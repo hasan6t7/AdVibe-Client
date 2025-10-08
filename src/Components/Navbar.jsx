@@ -36,7 +36,7 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <Link className=" text-4xl font-bold playfair">AdVibe</Link>
+        <Link className=" text-4xl font-bold playfair">Ad<span className="text-[#d23141]">V</span>ibe</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
