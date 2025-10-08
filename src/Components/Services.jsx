@@ -2,7 +2,7 @@ import React from "react";
 
 const Services = () => {
   return (
-    <section className="p-6">
+    <section className="w-[90%] mx-auto p-6">
          <h1 className="text-5xl font-bold text-center playfair mb-16">
         Our Services
       </h1>

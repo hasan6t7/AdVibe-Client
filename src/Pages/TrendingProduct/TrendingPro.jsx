@@ -18,7 +18,7 @@ const TrendingPro = () => {
       <div className="mt-16">
         <ProductCard products={products.slice(0, visibleProduct)}></ProductCard>
       </div>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center justify-center mt-10">
         {visibleProduct < products.length && (
           <button
             onClick={handleLoadMore}
