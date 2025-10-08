@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const Trends = () => {
   return (
-    <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-center my-20">
+    <section className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-center my-20">
       <div className="relative">
         <img
           src="https://i.ibb.co.com/DHvzpqV8/card-1.png"
@@ -13,9 +13,9 @@ const Trends = () => {
           className="absolute top-1/2 left-1/2 translate-x-[-15%] -translate-y-1/2
 "
         >
-          <p className="text-[#ed3849]">2023 Trend</p>
-          <h4>Womens Shirt</h4>
-          <Link href="#">Discover More +</Link>
+          <p className="text-[#ed3849] mb-1">2023 Trend</p>
+          <h4 className="playfair text-2xl font-bold">Womens Shirt</h4>
+          <Link href="#" className="text-sm text-gray-700">Discover More +</Link>
         </div>
       </div>
       <div className="relative">
@@ -27,9 +27,9 @@ const Trends = () => {
           className="absolute top-1/2 left-1/2 translate-x-[-15%] -translate-y-1/2
 "
         >
-          <p>2023 Trend</p>
-          <h4>Womens Dresses</h4>
-          <Link href="#">Discover More +</Link>
+          <p className="text-[#ed3849] mb-1">2023 Trend</p>
+          <h4 className="playfair text-2xl font-bold">Womens Dresses</h4>
+          <Link href="#" className="text-sm text-gray-700">Discover More +</Link>
         </div>
       </div>
       <div className="relative">
@@ -41,9 +41,9 @@ const Trends = () => {
           className="absolute top-1/2 left-1/2 translate-x-[-15%] -translate-y-1/2
 "
         >
-          <p>2023 Trend</p>
-          <h4>Womens Casuals</h4>
-          <Link href="#">Discover More +</Link>
+          <p className="text-[#ed3849] mb-1">2023 Trend</p>
+          <h4 className="playfair text-2xl font-bold">Womens Casuals</h4>
+          <Link href="#" className="text-sm text-gray-700">Discover More +</Link>
         </div>
       </div>
     </section>
