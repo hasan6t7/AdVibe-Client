@@ -5,7 +5,7 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-@theme {
+/* @theme {
   --color-primary: #ed3849;
   --color-primary-dark: #d23141;
   --color-primary-light: #f4e5ec;
@@ -16,7 +16,7 @@
   --max-w-screen-2xl: 1400px;
   --max-w-custom-1200: 1200px;
   --max-w-custom-900: 900px;
-}
+} */
 
 .poppins {
   font-family: "Poppins", sans-serif;
