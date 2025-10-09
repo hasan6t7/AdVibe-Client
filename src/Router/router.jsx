@@ -4,6 +4,8 @@ import Home from "../Pages/Home/Home";
 import Shop from "../Pages/Shop/Shop";
 import Category from "../Pages/Category/Category";
 import FourOFour from "../Components/FourOFour";
+import Login from "../Pages/Login/Login";
+import Register from "../Pages/Login/Register";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,14 @@ const router = createBrowserRouter([
       {
         path: "/category/:categoryName",
         element: <Category></Category>,
+      },
+      {
+        path: "/login",
+        Component: Login,
+      },
+      {
+        path: "/register",
+        Component: Register,
       },
     ],
   },

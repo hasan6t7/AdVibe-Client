@@ -1,5 +1,6 @@
 import React from "react";
 import { FaMagnifyingGlass, FaRegUser } from "react-icons/fa6";
+import { MdShoppingCart } from "react-icons/md";
 import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
@@ -26,53 +27,76 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
+            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow text-lg"
           >
             <li>
-              <NavLink>Home</NavLink>
+              <NavLink
+                to={"/"}
+                className={({ isActive }) =>
+                  isActive ? "text-[#ed3849]" : "hover:text-[#ed3849]"
+                }
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <NavLink>Shop</NavLink>
+              <NavLink
+                to={"/shop"}
+                className={({ isActive }) =>
+                  isActive ? "text-[#ed3849]" : "hover:text-[#ed3849]"
+                }
+              >
+                Shop
+              </NavLink>
             </li>
           </ul>
         </div>
-        <Link className=" text-4xl font-bold playfair">Ad<span className="text-[#d23141]">V</span>ibe</Link>
+        <Link className=" text-4xl font-bold playfair">
+          Ad<span className="text-[#d23141]">V</span>ibe
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu menu-horizontal px-1 text-lg">
           <li>
-            <NavLink>Home</NavLink>
+            <NavLink
+              to={"/"}
+              className={({ isActive }) =>
+                isActive ? "text-[#ed3849]" : "hover:text-[#ed3849]"
+              }
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <NavLink>Shop</NavLink>
+            <NavLink
+              to={"/shop"}
+              className={({ isActive }) =>
+                isActive ? "text-[#ed3849]" : "hover:text-[#ed3849]"
+              }
+            >
+              Shop
+            </NavLink>
           </li>
         </ul>
       </div>
-      <div className="navbar-end items-center gap-3">
-        <div className="indicator">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            {" "}
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-            />{" "}
-          </svg>
-          <span className="badge badge-sm indicator-item">8</span>
+      <div className="navbar-end flex items-center gap-6">
+        {/* Cart Section */}
+        <div className="indicator cursor-pointer relative">
+          <MdShoppingCart className="text-2xl" />
+          <span className="badge badge-sm indicator-item bg-red-500 text-white border-none">
+            8
+          </span>
         </div>
-        <div>
-          <FaMagnifyingGlass />
+
+        {/* Search Icon */}
+        <div className="cursor-pointer">
+          <FaMagnifyingGlass className="text-xl" />
         </div>
-        <div>
-          <FaRegUser />
-        </div>
+
+        {/* User Icon */}
+        <Link to={"/login"} className="cursor-pointer">
+          <FaRegUser className="text-xl" />
+        </Link>
       </div>
     </div>
   );
