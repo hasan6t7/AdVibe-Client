@@ -5,6 +5,7 @@ import Trends from "../../Components/Trends";
 import TrendingPro from "../TrendingProduct/TrendingPro";
 import Deal from "../../Components/Deal";
 import Services from "../../Components/Services";
+import Blogs from "../../Components/Blogs";
 
 const Home = () => {
   return (
@@ -15,6 +16,7 @@ const Home = () => {
       <TrendingPro></TrendingPro>
       <Deal></Deal>
       <Services></Services>
+      <Blogs></Blogs>
     </div>
   );
 };
