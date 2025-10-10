@@ -1,17 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { useLoginUserMutation } from "../../Redux/features/auth/authApi";
+import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../Redux/features/auth/authSlice";
 
 const Login = () => {
-   const {
+  const [loginUser, { isLoading, error }] = useLoginUserMutation();
+  const [message, setMessage] = useState("");
+  const dispatch = useDispatch();
+  const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+    
+      const response = await loginUser(data).unwrap();
+      const {  user } = response;
+
+      dispatch(setUser({user}));
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `${response.message}`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/");
+    } catch (error) {
+      setMessage(error.data.message);
+      console.log("Error Failed", error);
+    }
   };
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
   return (
     <div className="p-6 flex items-center justify-center min-h-screen">
       <div className="bg-white/90 shadow-2xl rounded-2xl p-10 w-full max-w-md border border-gray-100">
@@ -66,6 +93,7 @@ const Login = () => {
           >
             Login
           </button>
+          {message && <p className="text-sm text-red-500 mt-1">{message}</p>}
         </form>
 
         <p className="text-center text-sm text-gray-500 mt-6">

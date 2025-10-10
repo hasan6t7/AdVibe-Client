@@ -1,17 +1,35 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { useRegisterUserMutation } from "../../Redux/features/auth/authApi";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const [registerUser, { isLoading, error }] = useRegisterUserMutation();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    try {
+      await registerUser(data).unwrap();
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `Register Successfully Done`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      navigate("/login");
+    } catch (err) {
+      console.log("Registration Failed", err);
+    }
   };
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error}</div>;
   return (
     <div className="p-6 flex items-center justify-center min-h-screen">
       <div className="bg-white/90 shadow-2xl rounded-2xl p-10 w-full max-w-md border border-gray-100">

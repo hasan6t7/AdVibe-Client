@@ -4,7 +4,7 @@ import { getBaseUrl } from "../../../Utils/getBaseUrl";
 export const authApi = createApi({
   reducerPath: "authApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${getBaseUrl()}/api/auth`,
+    baseUrl: `${getBaseUrl()}api/auth`,
     credentials: "include",
   }),
   endpoints: (builder) => ({
@@ -23,9 +23,16 @@ export const authApi = createApi({
         body: credentials,
       }),
     }),
+
+    logOutUser: builder.mutation({
+      query: () => ({
+        url: "/logout",
+        method: "POST",
+      }),
+    }),
   }),
 });
 
-export const { useRegisterUserMutation, useLoginUserMutation } = authApi;
+export const { useRegisterUserMutation, useLoginUserMutation , useLogOutUserMutation} = authApi;
 
 export default authApi;

@@ -6,10 +6,10 @@ const Services = () => {
          <h1 className="text-5xl font-bold text-center playfair mb-16">
         Our Services
       </h1>
-      <div class=" grid grid-cols-2 md:grid-cols-3 gap-10 justify-between">
-        <div class="text-center p-4 bg-[#F4E5EC] rounded-xl">
+      <div className=" grid grid-cols-2 md:grid-cols-3 gap-10 justify-between">
+        <div className="text-center p-4 bg-[#F4E5EC] rounded-xl">
           <span className="text-3xl text-[#ed3849]">
-            <i class="ri-truck-line"></i>
+            <i className="ri-truck-line"></i>
           </span>
           <h4 className="text-2xl font-bold playfair mt-4 mb-2">
             Free Delivery
@@ -18,9 +18,9 @@ const Services = () => {
             Offers convenience and the ability to shop from anywhere, anytime.
           </p>
         </div>
-        <div class="text-center p-4 bg-[#F4E5EC] rounded-xl">
+        <div className="text-center p-4 bg-[#F4E5EC] rounded-xl">
           <span className="text-3xl text-[#ed3849]">
-            <i class="ri-money-dollar-circle-line"></i>
+            <i className="ri-money-dollar-circle-line"></i>
           </span>
           <h4 className="text-2xl font-bold playfair mt-4 mb-2">
             100% Money Back Guaranty
@@ -29,9 +29,9 @@ const Services = () => {
             E-commerce have a review system where customers can share feedback.
           </p>
         </div>
-        <div class="text-center p-4 bg-[#F4E5EC] rounded-xl">
+        <div className="text-center p-4 bg-[#F4E5EC] rounded-xl">
           <span className="text-3xl text-[#ed3849]">
-            <i class="ri-user-voice-fill"></i>
+            <i className="ri-user-voice-fill"></i>
           </span>
           <h4 className="text-2xl font-bold playfair mt-4 mb-2">
             Strong Support
