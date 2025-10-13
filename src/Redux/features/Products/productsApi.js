@@ -7,17 +7,10 @@ const productsApi = createApi({
     baseUrl: `${getBaseUrl()}api/products`,
     credentials: "include",
   }),
-  tagTypes: "Products",
+  tagTypes: ["Products"],
   endpoints: (builder) => ({
     getAllProducts: builder.query({
-      query: ({
-        category,
-        color,
-        minPrice,
-        maxPrice,
-        page = 1,
-        limit = 10,
-      }) => {
+      query: ({ category, color, minPrice, maxPrice, page = 1, limit = 10 }) => {
         const queryParams = new URLSearchParams({
           category: category || "",
           color: color || "",
@@ -30,27 +23,29 @@ const productsApi = createApi({
       },
       providesTags: ["Products"],
     }),
+
     getSingleProduct: builder.query({
       query: (id) => `/${id}`,
       providesTags: (result, error, id) => [{ type: "Products", id }],
     }),
+
     addProduct: builder.mutation({
       query: (newProduct) => ({
         url: "/create-product",
         method: "POST",
         body: newProduct,
-        credentials: "include",
       }),
       invalidatesTags: ["Products"],
     }),
-    updateProduct: {
-      query: (id, ...rest) => ({
+
+    updateProduct: builder.mutation({
+      query: ({ id, ...data }) => ({
         url: `/update-product/${id}`,
         method: "PATCH",
-        body: rest,
+        body: data,
       }),
       invalidatesTags: ["Products"],
-    },
+    }),
 
     deleteProduct: builder.mutation({
       query: (id) => ({
@@ -69,4 +64,5 @@ export const {
   useUpdateProductMutation,
   useDeleteProductMutation,
 } = productsApi;
+
 export default productsApi;
