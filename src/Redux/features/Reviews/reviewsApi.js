@@ -35,4 +35,9 @@ const reviewsApi = createApi({
   }),
 });
 
-export const { useAddReviewMutation } = reviewsApi;
+export const {
+  useAddReviewMutation,
+  useGetTotalReviewCountQuery,
+  useGetReviewByUserIdMutation,
+} = reviewsApi;
+export default reviewsApi
