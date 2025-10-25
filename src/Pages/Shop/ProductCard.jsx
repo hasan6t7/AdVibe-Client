@@ -8,6 +8,7 @@ const ProductCard = ({ products }) => {
   const dispatch = useDispatch();
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
+    
   };
   return (
     <div>

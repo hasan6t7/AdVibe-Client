@@ -10,6 +10,7 @@ const SingleProducts = () => {
   const dispatch = useDispatch();
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
+   
   };
   const { id } = useParams();
   const {
@@ -18,7 +19,7 @@ const SingleProducts = () => {
     isError,
   } = useGetSingleProductQuery(id);
   const { singleProduct, reviews } = productDetails || {};
-  console.log({ singleProduct, reviews });
+ 
 
   if (isLoading) return <div>loading....</div>;
   if (isError) return <div>Error...</div>;

@@ -5,14 +5,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router";
 import { logout } from "../Redux/features/auth/authSlice";
 import { useLogOutUserMutation } from "../Redux/features/auth/authApi";
+import CartModal from "../Pages/Shop/CartModal";
 
 const avatar = "https://i.ibb.co.com/gLDzNv8G/avatar.png";
 
 const Navbar = () => {
   const { user } = useSelector((state) => state.auth);
-  const [isDropdownOpen, setIsDropdown] = useState(false);
+  const products = useSelector((state) => state.cart.products);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isDropdownOpen, setIsDropdown] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const hangleCartToogle = () => {
+    setIsCartOpen(!isCartOpen);
+  };
 
   const [logOutUser, { isLoading, error }] = useLogOutUserMutation();
 
@@ -124,12 +131,15 @@ const Navbar = () => {
       </div>
       <div className="navbar-end flex items-center gap-6">
         {/* Cart Section */}
-        <div className="indicator cursor-pointer relative">
+        <button
+          onClick={hangleCartToogle}
+          className="indicator cursor-pointer relative"
+        >
           <MdShoppingCart className="text-2xl" />
           <span className="badge badge-sm indicator-item bg-red-500 text-white border-none">
-            8
+            {products.length}
           </span>
-        </div>
+        </button>
 
         {/* Search Icon */}
         <div className="cursor-pointer">
@@ -177,6 +187,15 @@ const Navbar = () => {
           </div>
         )}
       </div>
+
+      {/* cart modal  */}
+      {isCartOpen && (
+        <CartModal
+          products={products}
+          isOpen={isCartOpen}
+          onClose={hangleCartToogle}
+        ></CartModal>
+      )}
     </div>
   );
 };
