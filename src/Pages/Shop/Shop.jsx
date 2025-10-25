@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useGetAllProductsQuery } from "../../Redux/features/Products/productsApi";
 import ProductCard from "./ProductCard";
+import ShopFiltering from "./ShopFiltering";
 
 const Shop = () => {
   const filter = {
@@ -19,6 +20,14 @@ const Shop = () => {
     color: "all",
     priceRange: "",
   });
+
+  const clearFilter = () => {
+    setFilterstate({
+      category: "all",
+      color: "all",
+      priceRange: "",
+    });
+  };
 
   const { category, color, priceRange } = filterstate;
   const [minPrice, maxPrice] = priceRange
@@ -58,7 +67,7 @@ const Shop = () => {
       </p>
     );
   return (
-    <div className="p-6">
+    <div className="p-6 mb-20">
       <div>
         <h1 className="text-center text-5xl playfair">Shop</h1>
         <p className="lg:w-2/3 mx-auto text-center mt-3 text-sm text-gray-700">
@@ -69,98 +78,52 @@ const Shop = () => {
       </div>
       <div className="flex flex-col md:flex-row gap-8 md:gap-14 mt-16">
         <div className="w-full md:w-1/4 space-y-6">
-          {/* Category Filter */}
-          <div>
-            <h2 className="font-semibold mb-2">Category</h2>
-            <select
-              value={filterstate.category}
-              onChange={(e) =>
-                setFilterstate({ ...filterstate, category: e.target.value })
-              }
-              className="border px-3 py-1 rounded w-full"
-            >
-              {filter.categories.map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Color Filter */}
-          <div>
-            <h2 className="font-semibold mb-2">Color</h2>
-            <select
-              value={filterstate.color}
-              onChange={(e) =>
-                setFilterstate({ ...filterstate, color: e.target.value })
-              }
-              className="border px-3 py-1 rounded w-full"
-            >
-              {filter.color.map((col) => (
-                <option key={col} value={col}>
-                  {col}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Price Filter */}
-          <div>
-            <h2 className="font-semibold mb-2">Price</h2>
-            <select
-              value={filterstate.priceRange}
-              onChange={(e) =>
-                setFilterstate({ ...filterstate, priceRange: e.target.value })
-              }
-              className="border px-3 py-1 rounded w-full"
-            >
-              <option value="">All Prices</option>
-              {filter.priceRange.map((p) => (
-                <option key={p.label} value={`${p.min}-${p.max}`}>
-                  {p.label}
-                </option>
-              ))}
-            </select>
-          </div>
+          <ShopFiltering
+            filter={filter}
+            filterstate={filterstate}
+            setFilterstate={setFilterstate}
+            clearFilter={clearFilter}
+          ></ShopFiltering>
         </div>
 
         <div>
-          <h1>
-            showing {startProduct} to {endProduct} of {totalProducts} products
+          <h1 className="mb-5 text-lg ">
+            Showing {startProduct} to {endProduct} of {totalProducts} products
           </h1>
           <ProductCard products={products}></ProductCard>
           {/* // pagination */}
 
-          <div className="flex items-center justify-center my-16">
-            <button
-              disabled={currentPage === 1}
-              onClick={() => handlePageChange(currentPage - 1)}
-              className="join-item btn btn-square"
-            >
-              Prev
-            </button>
-            {[...Array(totalPages)].map((_, index) => (
+          {products.length > 0 && (
+            <div className="flex items-center justify-center my-16">
               <button
-                onClick={() => handlePageChange(index + 1)}
-                className={`btn btn-square ${
-                  currentPage === index + 1
-                    ? "bg-[#ed3849] "
-                    : "hover:bg-[#ed3849] "
-                }`}
-                key={index}
+                disabled={currentPage === 1}
+                onClick={() => handlePageChange(currentPage - 1)}
+                className="join-item btn btn-square"
               >
-                {index + 1}
+                Prev
               </button>
-            ))}
-            <button
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
-              className="join-item btn btn-square"
-            >
-              Next
-            </button>
-          </div>
+              {[...Array(totalPages)].map((_, index) => (
+                <button
+                  onClick={() => handlePageChange(index + 1)}
+                  className={`btn btn-square ${
+                    currentPage === index + 1
+                      ? "bg-[#ed3849] text-white"
+                      : "hover:bg-[#ed3849] "
+                  }`}
+                  key={index}
+                >
+                  {index + 1}
+                </button>
+              ))}
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="join-item btn btn-square"
+              >
+                Next
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>

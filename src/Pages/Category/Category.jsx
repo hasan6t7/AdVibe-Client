@@ -17,7 +17,7 @@ const Category = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-5xl font-bold text-center playfair">
+      <h1 className="text-5xl font-bold text-center playfair capitalize">
         {categoryName}
       </h1>
       <p className="text-gray-700 text-center mt-2  lg:w-1/2 mx-auto ">

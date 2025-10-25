@@ -19,11 +19,10 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     try {
-    
       const response = await loginUser(data).unwrap();
-      const {  user } = response;
+      const { data: user } = response;
 
-      dispatch(setUser({user}));
+      dispatch(setUser({ user }));
       Swal.fire({
         position: "center",
         icon: "success",
