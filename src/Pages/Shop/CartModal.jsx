@@ -1,8 +1,23 @@
 import React from "react";
 import OrderSummary from "./OrderSummary";
+import { useDispatch } from "react-redux";
+import {
+ 
+  removeFromCart,
+  updateQuantity,
+} from "../../Redux/features/cart/cartSlice";
 
-const CartModal = ({ products, isOpen, onClose }) => {
-  console.log({ products, isOpen, onClose });
+const CartModal = ({ products, onClose }) => {
+  const dispatch = useDispatch();
+  const handleUpdateQuantity = (type, _id) => {
+    const payload = { type, _id };
+    dispatch(updateQuantity(payload));
+  };
+  const hangleRemoveFromCart = (_id) => {
+    dispatch(removeFromCart({ _id }));
+  };
+
+  
   return (
     <div>
       <div
@@ -45,22 +60,37 @@ const CartModal = ({ products, isOpen, onClose }) => {
                       />
                       <div>
                         <h5 className="text-lg font-medium">{product?.name}</h5>
-                        <p className="text-gray-600 text-sm">{product.price}</p>
+                        <p className="text-gray-600 text-sm">
+                          ${product.price.toFixed(2)}
+                        </p>
                       </div>
                     </div>
 
                     <div className="flex flex-row md:justify-start justify-end items-center mt-2">
-                      <button className="size-6 flex items-center justify-center px-1.5 rounded-full bg-gray-200 text-[#ed3849] hover:bg-[#d23141] hover:text-white ml-8">
+                      <button
+                        onClick={() =>
+                          handleUpdateQuantity("decrement", product?._id)
+                        }
+                        className="size-6 flex items-center justify-center px-1.5 rounded-full bg-gray-200 text-[#ed3849] hover:bg-[#d23141] hover:text-white ml-8"
+                      >
                         -
                       </button>
                       <span className="px-2 text-center mx-1">
                         {product.quantity}
                       </span>
-                      <button className="size-6 flex items-center justify-center px-1.5 rounded-full text-[#ed3849] hover:bg-[#d23141] hover:text-white">
+                      <button
+                        onClick={() =>
+                          handleUpdateQuantity("increment", product?._id)
+                        }
+                        className="size-6 flex items-center justify-center px-1.5 rounded-full text-[#ed3849] hover:bg-[#d23141] hover:text-white"
+                      >
                         +
                       </button>
                       <div className="ml-5">
-                        <button className="text-red-500 hover:text-red-700 mr-4">
+                        <button
+                          onClick={() => hangleRemoveFromCart(product?._id)}
+                          className="text-red-500 hover:text-red-700 mr-4 cursor-pointer"
+                        >
                           Remove
                         </button>
                       </div>
