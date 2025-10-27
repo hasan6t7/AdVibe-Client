@@ -38,7 +38,7 @@ const OrderSummary = () => {
       );
       const { url } = response.data;
 
-      window.location.href = url;
+      window.open(url, "_blank");
     } catch (error) {
       console.error("Payment failed:", error);
     }

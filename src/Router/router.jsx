@@ -7,6 +7,7 @@ import FourOFour from "../Components/FourOFour";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Login/Register";
 import SingleProducts from "../Pages/Shop/ProductDetails/SingleProducts";
+import PaymentSuccess from "../Pages/Payment/PaymentSuccess";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "/category/:categoryName",
         element: <Category></Category>,
+      },
+      {
+        path: "/success",
+        element: <PaymentSuccess></PaymentSuccess>,
       },
       {
         path: "/login",
