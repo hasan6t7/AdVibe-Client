@@ -9,18 +9,13 @@ import CartModal from "../Pages/Shop/CartModal";
 
 const avatar = "https://i.ibb.co.com/gLDzNv8G/avatar.png";
 
-const Navbar = () => {
+const Navbar = ({onCartToggle}) => {
   const { user } = useSelector((state) => state.auth);
   const products = useSelector((state) => state.cart.products);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdown] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
-
-  const hangleCartToogle = () => {
-    setIsCartOpen(!isCartOpen);
-  };
-
+ 
   const [logOutUser, { isLoading, error }] = useLogOutUserMutation();
 
   const handleDropdownToogle = () => {
@@ -132,7 +127,7 @@ const Navbar = () => {
       <div className="navbar-end flex items-center gap-6">
         {/* Cart Section */}
         <button
-          onClick={hangleCartToogle}
+          onClick={onCartToggle}
           className="indicator cursor-pointer relative"
         >
           <MdShoppingCart className="text-2xl" />
@@ -188,14 +183,7 @@ const Navbar = () => {
         )}
       </div>
 
-      {/* cart modal  */}
-      {isCartOpen && (
-        <CartModal
-          products={products}
-          isOpen={isCartOpen}
-          onClose={hangleCartToogle}
-        ></CartModal>
-      )}
+     
     </div>
   );
 };

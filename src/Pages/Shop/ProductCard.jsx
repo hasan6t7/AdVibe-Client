@@ -68,7 +68,7 @@ const ProductCard = ({ products }) => {
 
                 <div className="mt-5">
                   <Link
-                    to={`/shop/${product?._id || ind}`}
+                    to={`/shop/${product?._id}`}
                     className="inline-block bg-[#ed3849] hover:bg-[#c72c3b] text-white text-sm font-medium px-5 py-2 rounded-full shadow transition-all duration-300"
                   >
                     View Details

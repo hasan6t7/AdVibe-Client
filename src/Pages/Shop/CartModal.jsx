@@ -21,11 +21,11 @@ const CartModal = ({ products, onClose }) => {
   return (
     <div>
       <div
-        className={`fixed z-[1000] inset-0  transition-opacity`}
+        className={`fixed z-[9999] inset-0 transition-opacity`}
         style={{ transition: "opacity 300ms" }}
       >
         <div
-          className={`fixed right-0 top-0 md:w-[45%] w-full bg-white h-full overflow-y-auto transition-transform `}
+          className={`fixed right-0 top-0 md:w-[45%] p-2 shadow w-full bg-white h-full overflow-y-auto transition-transform `}
           style={{
             transition: "transform 300ms cubic-bezier(0.25, 0.46, 0.45, 0.94)",
           }}
