@@ -1,13 +1,12 @@
 import React from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router";
-
 import { AiFillHome } from "react-icons/ai";
+import { FaMoneyCheckAlt, FaUsers, FaUserCircle } from "react-icons/fa";
 import { BsFileEarmarkText } from "react-icons/bs";
-import { FaMoneyCheckAlt, FaUsers } from "react-icons/fa";
 import { TbProgress } from "react-icons/tb";
+import { MdRateReview } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../Redux/features/auth/authSlice";
-
 const DashLayout = () => {
   const { user } = useSelector((state) => state.auth.user);
   const role = user?.role;
@@ -20,10 +19,45 @@ const DashLayout = () => {
   };
 
   const adminNavItems = [
-    { path: "/dashboard/add-product", label: "Add Product" },
-    { path: "/dashboard/manage-product", label: "Manage Product" },
-    { path: "/dashboard/manage-order", label: "Manage Order" },
-    { path: "/dashboard/users", label: "Users" },
+    {
+      path: "/dashboard/add-product",
+      label: "Add Product",
+      icon: <BsFileEarmarkText size={18} />,
+    },
+    {
+      path: "/dashboard/manage-product",
+      label: "Manage Product",
+      icon: <TbProgress size={18} />,
+    },
+    {
+      path: "/dashboard/manage-order",
+      label: "Manage Order",
+      icon: <FaMoneyCheckAlt size={18} />,
+    },
+    { path: "/dashboard/users", label: "Users", icon: <FaUsers size={18} /> },
+  ];
+
+  const userNavItems = [
+    {
+      path: "/dashboard/orders",
+      label: "Orders",
+      icon: <TbProgress size={18} />,
+    },
+    {
+      path: "/dashboard/payments",
+      label: "Payments",
+      icon: <FaMoneyCheckAlt size={18} />,
+    },
+    {
+      path: "/dashboard/profile",
+      label: "Profile",
+      icon: <FaUserCircle size={18} />,
+    },
+    {
+      path: "/dashboard/reviews",
+      label: "Reviews",
+      icon: <MdRateReview size={18} />,
+    },
   ];
 
   return (
@@ -76,7 +110,7 @@ const DashLayout = () => {
               </Link>
             </div>
             {/* Universal Dashboard Home */}
-            <li className="font-bold">
+            <li className="font-bold text-[16px]">
               <NavLink
                 className={({ isActive }) =>
                   isActive
@@ -91,42 +125,38 @@ const DashLayout = () => {
             </li>
 
             {role === "user" && (
-              <>
-                <li className="font-bold">
-                  <NavLink
-                    className={({ isActive }) =>
-                      isActive ? "text-green-500 " : ""
-                    }
-                    to="/dashboard/employee-list"
-                  >
-                    <FaUsers size={20} /> Employee List
-                  </NavLink>
-                </li>
-                <li className="font-bold">
-                  <NavLink
-                    className={({ isActive }) =>
-                      isActive ? "text-green-500 " : ""
-                    }
-                    to="/dashboard/progress"
-                  >
-                    <TbProgress size={20} /> Progress
-                  </NavLink>
-                </li>
-              </>
+              <ul>
+                {userNavItems.map((item, index) => (
+                  <li className="font-bold text-[16px]" key={index}>
+                    <NavLink
+                      to={item?.path}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "text-[#ed3849] font-semibold flex items-center gap-2"
+                          : "hover:text-[#ed3849] flex items-center gap-2"
+                      }
+                    >
+                      {item?.icon}
+                      {item?.label}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
             )}
 
             {role === "admin" && (
               <ul>
                 {adminNavItems.map((item, index) => (
-                  <li key={index}>
+                  <li className="font-bold text-[16px]" key={index}>
                     <NavLink
                       to={item?.path}
                       className={({ isActive }) =>
                         isActive
-                          ? "text-[#ed3849] font-semibold"
-                          : "hover:text-[#ed3849]"
+                          ? "text-[#ed3849] font-semibold flex items-center gap-2"
+                          : "hover:text-[#ed3849] flex items-center gap-2"
                       }
                     >
+                      {item?.icon}
                       {item?.label}
                     </NavLink>
                   </li>

@@ -6,17 +6,25 @@ import UserStatsChart from "./UserStatsChart";
 
 const UserDash = () => {
   const { user } = useSelector((state) => state.auth.user);
-  const { data } = useGetUserStatsQuery(user?.email);
+  const { data, isLoading } = useGetUserStatsQuery(user?.email);
   const userStats = data?.data || {};
-//   const { totalPayment, totalReviews, totalPurchasedProduct } = userStats;
-
+  //   const { totalPayment, totalReviews, totalPurchasedProduct } = userStats;
+  if (isLoading) return <div>loading...</div>;
   return (
     <div className="">
-      <div>
-        <h1 className="text-2xl font-semibold mb-4">User Dashboard</h1>
-        <p className="text-gray-500">
-          Hi! {user?.username} . Welcome to your dashboard
+      <div className="mb-8 ">
+        <h1 className="text-3xl sm:text-3xl font-bold bg-gradient-to-r from-[#d23141] via-[#ff758c] to-[#d23141] bg-clip-text text-transparent tracking-wide drop-shadow-sm ">
+          <span className="playfair sm:text-4xl font-extrabold">
+            Welcome Back,
+          </span>{" "}
+          {user?.username || "User"}
+        </h1>
+
+        <p className="mt-2 text-gray-600  sm:text-lg font-medium">
+          Here’s a quick overview of your recent activity and stats
         </p>
+
+        <div className="w-44 sm:w-40 h-[3px] bg-gradient-to-r from-[#d23141] via-[#ff758c] to-transparent rounded-full mt-3"></div>
       </div>
       <div>
         <UserStats userStats={userStats}></UserStats>

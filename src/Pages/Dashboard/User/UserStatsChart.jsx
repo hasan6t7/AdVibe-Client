@@ -29,13 +29,13 @@ const UserStatsChart = ({ userStats }) => {
         label: "User Stats ",
         data: [
           totalPayment || 0,
-          totalReviews || 0,
+          totalReviews  || 0,
           totalPurchasedProduct  || 0,
         ],
         backgroundColor: [
-          "rgba(59, 130, 246, 0.4)", 
-          "rgba(234, 179, 8, 0.4)", 
-          "rgba(34, 197, 94, 0.4)", 
+          "rgba(59, 130, 246, 0.4)",
+          "rgba(234, 179, 8, 0.4)",
+          "rgba(34, 197, 94, 0.4)",
         ],
         borderColor: [
           "rgb(59, 130, 246)",
@@ -55,25 +55,17 @@ const UserStatsChart = ({ userStats }) => {
 
   const options = {
     responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         display: true,
         position: "top",
-        // labels: {
-        //   color: "#374151",
-        //   font: {
-        //     size: 14,
-        //     weight: "bold",
-        //   },
-        // },
-      },
-      title: {
-        display: true,
-        text: " User Activity Overview",
-        color: "#111827",
-        font: {
-          size: 20,
-          weight: "bold",
+        labels: {
+          color: "#374151",
+          font: {
+            size: 14,
+            weight: "bold",
+          },
         },
       },
       tooltip: {
@@ -87,17 +79,7 @@ const UserStatsChart = ({ userStats }) => {
         },
       },
     },
-    scales: {
-      x: {
-        ticks: { color: "#374151", font: { size: 13, weight: "bold" } },
-        grid: { display: false },
-      },
-      y: {
-        beginAtZero: true,
-        ticks: { color: "#374151" },
-        grid: { color: "rgba(156, 163, 175, 0.1)" },
-      },
-    },
+
     animation: {
       duration: 1200,
       easing: "easeOutBounce",
@@ -106,7 +88,9 @@ const UserStatsChart = ({ userStats }) => {
 
   return (
     <div className="bg-white/80  p-6 rounded-2xl shadow-lg mt-10">
-      <Bar data={data} options={options} />
+      <div className="w-full h-[300px] sm:h-[350px] md:h-[400px] lg:h-[500px]">
+        <Bar data={data} options={options} />
+      </div>
     </div>
   );
 };
