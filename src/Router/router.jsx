@@ -10,6 +10,7 @@ import SingleProducts from "../Pages/Shop/ProductDetails/SingleProducts";
 import PaymentSuccess from "../Pages/Payment/PaymentSuccess";
 import DashLayout from "../Layouts/DashLayout";
 import PrivateRoute from "./PrivateRoute";
+import DashboardHome from "../Pages/Dashboard/DashHome/DashHome";
 
 const router = createBrowserRouter([
   {
@@ -50,16 +51,12 @@ const router = createBrowserRouter([
 
   {
     path: "/dashboard",
-    element: (
-      <PrivateRoute>
-        <DashLayout></DashLayout>
-      </PrivateRoute>
-    ),
+    element: <DashLayout></DashLayout>,
     children: [
       // users
       {
         path: "",
-        element: <div>user dash</div>,
+        element: <DashboardHome></DashboardHome>,
       },
       {
         path: "orders",
@@ -81,43 +78,23 @@ const router = createBrowserRouter([
       // admin
       {
         path: "admin",
-        element: (
-          <PrivateRoute role={"admin"}>
-            <div>admin dash</div>
-          </PrivateRoute>
-        ),
+        element: <div>admin dash</div>,
       },
       {
         path: "add-product",
-        element: (
-          <PrivateRoute role={"admin"}>
-            <div>add product</div>
-          </PrivateRoute>
-        ),
+        element: <div>add product</div>,
       },
       {
         path: "manage-product",
-        element: (
-          <PrivateRoute role={"admin"}>
-            <div>manage product</div>
-          </PrivateRoute>
-        ),
+        element: <div>manage product</div>,
       },
       {
         path: "update-product/:id",
-        element: (
-          <PrivateRoute role={"admin"}>
-            <div>update product</div>
-          </PrivateRoute>
-        ),
+        element: <div>update product</div>,
       },
       {
         path: "manage-order",
-        element: (
-          <PrivateRoute role={"admin"}>
-            <div>manage order</div>
-          </PrivateRoute>
-        ),
+        element: <div>manage order</div>,
       },
     ],
   },
