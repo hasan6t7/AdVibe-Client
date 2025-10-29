@@ -25,9 +25,9 @@ const reviewsApi = createApi({
         url: "/total-reviews",
       }),
     }),
-    getReviewByUserId: builder.mutation({
-      query: (id) => ({
-        query: `/${id}`,
+    getReviewByUserId: builder.query({
+      query: (_id) => ({
+        url: `/${_id}`,
       }),
       providesTags: (result) =>
         result ? [{ type: "Reviews", id: result[0]?.email }] : [],
@@ -38,6 +38,6 @@ const reviewsApi = createApi({
 export const {
   useAddReviewMutation,
   useGetTotalReviewCountQuery,
-  useGetReviewByUserIdMutation,
+  useGetReviewByUserIdQuery,
 } = reviewsApi;
-export default reviewsApi
+export default reviewsApi;

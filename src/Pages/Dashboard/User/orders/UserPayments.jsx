@@ -11,14 +11,14 @@ const UserPayments = () => {
   if (isLoading)
     return (
       <div className="flex justify-center items-center h-60">
-        <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-blue-600"></div>
+        Loading....
       </div>
     );
 
   if (isError)
     return (
       <div className="text-red-600 text-center font-semibold">
-        ❌ Error Fetching Payment: {error?.message || "Something went wrong"}
+         Error Fetching Payment: {error?.message || "Something went wrong"}
       </div>
     );
 

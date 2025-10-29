@@ -14,6 +14,8 @@ import DashboardHome from "../Pages/Dashboard/DashHome/DashHome";
 import UserOrders from "../Pages/Dashboard/User/orders/UserOrders";
 import OrderDetails from "../Pages/Dashboard/User/orders/OrderDetails";
 import UserPayments from "../Pages/Dashboard/User/orders/UserPayments";
+import UserReviews from "../Pages/Dashboard/User/reviews/UserReviews";
+import UserProfile from "../Pages/Dashboard/User/profile/UserProfile";
 
 const router = createBrowserRouter([
   {
@@ -71,7 +73,7 @@ const router = createBrowserRouter([
       },
       {
         path: "profile",
-        element: <div>profile</div>,
+        element: <UserProfile></UserProfile>,
       },
       {
         path: "payments",
@@ -79,7 +81,7 @@ const router = createBrowserRouter([
       },
       {
         path: "reviews",
-        element: <div>reviews</div>,
+        element: <UserReviews></UserReviews>,
       },
 
       // admin
