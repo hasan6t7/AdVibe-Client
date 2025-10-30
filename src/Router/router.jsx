@@ -9,7 +9,6 @@ import Register from "../Pages/Login/Register";
 import SingleProducts from "../Pages/Shop/ProductDetails/SingleProducts";
 import PaymentSuccess from "../Pages/Payment/PaymentSuccess";
 import DashLayout from "../Layouts/DashLayout";
-import PrivateRoute from "./PrivateRoute";
 import DashboardHome from "../Pages/Dashboard/DashHome/DashHome";
 import UserOrders from "../Pages/Dashboard/User/orders/UserOrders";
 import OrderDetails from "../Pages/Dashboard/User/orders/OrderDetails";
@@ -20,89 +19,43 @@ import UserProfile from "../Pages/Dashboard/User/profile/UserProfile";
 const router = createBrowserRouter([
   {
     path: "/",
-    Component: Root,
-    errorElement: <FourOFour></FourOFour>,
+    element: <Root />,
+    errorElement: <FourOFour />,
     children: [
-      {
-        index: true,
-        Component: Home,
-      },
-      {
-        path: "/shop",
-        Component: Shop,
-      },
-      {
-        path: "/shop/:id",
-        Component: SingleProducts,
-      },
-      {
-        path: "/category/:categoryName",
-        element: <Category></Category>,
-      },
-      {
-        path: "/success",
-        element: <PaymentSuccess></PaymentSuccess>,
-      },
-      {
-        path: "/orders/:orderId",
-        element: <OrderDetails></OrderDetails>,
-      },
-      {
-        path: "/login",
-        Component: Login,
-      },
-      {
-        path: "/register",
-        Component: Register,
-      },
+      { index: true, element: <Home /> },
+      { path: "shop", element: <Shop /> },
+      { path: "shop/:id", element: <SingleProducts /> },
+      { path: "category/:categoryName", element: <Category /> },
+      { path: "success", element: <PaymentSuccess /> },
+      { path: "orders/:orderId", element: <OrderDetails /> },
+      { path: "login", element: <Login /> },
+      { path: "register", element: <Register /> },
     ],
   },
 
   {
     path: "/dashboard",
-    element: <DashLayout></DashLayout>,
+    element: (
+      
+        <DashLayout />
+      
+    ),
+    errorElement: <FourOFour />,
     children: [
-      // users
-      {
-        path: "",
-        element: <DashboardHome></DashboardHome>,
-      },
-      {
-        path: "orders",
-        element: <UserOrders></UserOrders>,
-      },
-      {
-        path: "profile",
-        element: <UserProfile></UserProfile>,
-      },
-      {
-        path: "payments",
-        element: <UserPayments></UserPayments>,
-      },
-      {
-        path: "reviews",
-        element: <UserReviews></UserReviews>,
-      },
+      // user
+      { index: true, element: <DashboardHome /> },
+      { path: "orders", element: <UserOrders /> },
+      { path: "profile", element: <UserProfile /> },
+      { path: "payments", element: <UserPayments /> },
+      { path: "reviews", element: <UserReviews /> },
 
       // admin
-      
-      {
-        path: "add-product",
-        element: <div>add product</div>,
-      },
-      {
-        path: "manage-product",
-        element: <div>manage product</div>,
-      },
-      {
-        path: "update-product/:id",
-        element: <div>update product</div>,
-      },
-      {
-        path: "manage-order",
-        element: <div>manage order</div>,
-      },
+      { path: "add-product", element: <div>Add Product</div> },
+      { path: "manage-product", element: <div>Manage Product</div> },
+      { path: "update-product/:id", element: <div>Update Product</div> },
+      { path: "manage-order", element: <div>Manage Order</div> },
     ],
   },
 ]);
+
 export default router;

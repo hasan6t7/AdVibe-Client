@@ -10,7 +10,7 @@ import CartModal from "../Pages/Shop/CartModal";
 const avatar = "https://i.ibb.co.com/gLDzNv8G/avatar.png";
 
 const Navbar = ({onCartToggle}) => {
-  const { user } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.auth.user);
   const products = useSelector((state) => state.cart.products);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -28,9 +28,9 @@ const Navbar = ({onCartToggle}) => {
     { label: "Orders", path: "/dashboard/orders" },
   ];
   const adminDropMenu = [
-    { label: "Dashboard", path: "/dashboard/admin" },
-    { label: "Manage Item", path: "/dashboard/manage-product" },
-    { label: "All Order", path: "/dashboard/manage-order" },
+    { label: "Dashboard", path: "/dashboard" },
+    { label: "Manage Product", path: "/dashboard/manage-product" },
+    { label: "Manage Order", path: "/dashboard/manage-order" },
     { label: "Add Product", path: "/dashboard/add-product" },
   ];
 
@@ -44,7 +44,7 @@ const Navbar = ({onCartToggle}) => {
     }
   };
   const dropdownMenu =
-    user && user.role === "admin" ? [...adminDropMenu] : [...userDropMenu];
+    user && user?.role === "admin" ? adminDropMenu : userDropMenu;
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>{error}</div>;

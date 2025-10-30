@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import AdminStats from "./Admin Stats/AdminStats";
 import { useGetAdminStatsQuery } from "../../../Redux/features/Stats/statsApi";
+import AdminStatsChart from "./Admin Stats/AdminStatsChart";
 
 const AdminDash = () => {
   const { user } = useSelector((state) => state.auth.user);
@@ -24,7 +25,8 @@ const AdminDash = () => {
         <div className="w-44 sm:w-40 h-[3px] bg-gradient-to-r from-[#d23141] via-[#ff758c] to-transparent rounded-full mt-3"></div>
       </div>
       <div>
-        <AdminStats adminStats={adminStats}></AdminStats>
+        <AdminStats adminStats={adminStats} />
+        <AdminStatsChart adminStats={adminStats} />
       </div>
     </div>
   );

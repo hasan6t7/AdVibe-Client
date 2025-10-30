@@ -105,9 +105,10 @@ const DashLayout = () => {
         <ul className="menu bg-red-50 text-base-content h-screen  w-80 p-4 space-y-1 justify-between">
           <div>
             <div className="mb-5 p-4">
-              <Link className=" text-4xl font-bold playfair">
+              <Link to={"/"} className=" text-4xl font-bold playfair">
                 Ad<span className="text-[#d23141]">V</span>ibe
               </Link>
+              <p className="text-xs italic capitalize">{role} dashboard</p>
             </div>
             {/* Universal Dashboard Home */}
             <li className="font-bold text-[16px]">

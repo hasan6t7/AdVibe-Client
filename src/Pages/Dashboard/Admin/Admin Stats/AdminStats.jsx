@@ -1,16 +1,17 @@
 import React from "react";
-import { FaBoxOpen, FaUsers, FaClipboardList, FaStar } from "react-icons/fa";
+import { FaBoxOpen, FaUsers, FaClipboardList } from "react-icons/fa";
+import { FaMoneyBillWave } from "react-icons/fa6";
 
 const AdminStats = ({ adminStats }) => {
-  const { totalOrders, totalProducts, totalUser, totalReviews } =
+  const { totalOrders, totalProducts, totalUser, totalEarnings } =
     adminStats || {};
 
   const stats = [
     {
-      label: "Total Orders",
-      value: totalOrders || 0,
+      label: "Total Earnings",
+      value: `$${totalEarnings || 0}`,
       icon: (
-        <FaClipboardList size={28} className="text-indigo-500 drop-shadow-md" />
+        <FaMoneyBillWave size={28} className="text-indigo-500 drop-shadow-md" />
       ),
       gradient: "from-indigo-500/30 via-indigo-400/20 to-indigo-500/10",
       textColor: "text-indigo-600",
@@ -29,10 +30,13 @@ const AdminStats = ({ adminStats }) => {
       gradient: "from-cyan-500/30 via-cyan-400/20 to-cyan-500/10",
       textColor: "text-cyan-600",
     },
+
     {
-      label: "Total Reviews",
-      value: totalReviews || 0,
-      icon: <FaStar size={28} className="text-yellow-400 drop-shadow-md" />,
+      label: "Total Orders",
+      value: totalOrders || 0,
+      icon: (
+        <FaClipboardList size={28} className="text-yellow-400 drop-shadow-md" />
+      ),
       gradient: "from-yellow-400/30 via-yellow-300/20 to-yellow-400/10",
       textColor: "text-yellow-500",
     },
@@ -44,7 +48,7 @@ const AdminStats = ({ adminStats }) => {
         {stats.map((item, index) => (
           <div
             key={index}
-            className={`relative bg-gradient-to-br ${item.gradient} rounded-2xl p-6 
+            className={`relative bg-gradient-to-br ${item.gradient} rounded-2xl px-2 py-4
             shadow-lg border border-white/10 backdrop-blur-md transition transform 
             hover:scale-[1.03] hover:shadow-2xl duration-300`}
           >
@@ -53,9 +57,9 @@ const AdminStats = ({ adminStats }) => {
 
             {/* Icon + Value */}
             <div className="flex items-center justify-between relative z-10">
-              <div className="p-3 bg-white/10 rounded-xl">{item.icon}</div>
+              <div className="p-2 bg-white/10 rounded-xl">{item.icon}</div>
               <p
-                className={`text-4xl font-extrabold ${item.textColor} drop-shadow-md`}
+                className={`text-3xl font-bold ${item.textColor} drop-shadow-md`}
               >
                 {item.value}
               </p>
