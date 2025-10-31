@@ -1,6 +1,9 @@
+
+
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
 import { useUpdateUserRoleMutation } from "../../../../Redux/features/auth/authApi";
+import { AnimatePresence , motion } from "framer-motion";
 
 const UpdateUserModal = ({ user, onClose, onRoleUpdate }) => {
   const [role, setRole] = useState(user?.role);
