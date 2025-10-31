@@ -33,7 +33,7 @@ export const orderApi = createApi({
       query: ({ id, status }) => ({
         url: `/update-order-status/${id}`,
         method: "PATCH",
-        body: status,
+        body: {status},
       }),
       invalidatesTags: ["Orders"],
     }),

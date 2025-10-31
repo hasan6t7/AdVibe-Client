@@ -6,7 +6,6 @@ import {
 } from "../../../../Redux/features/orders/orderApi";
 import UpdateOrderModal from "./UpdateOrderModal";
 
-
 const ManageOrder = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -16,20 +15,20 @@ const ManageOrder = () => {
 
   const orders = data?.data || [];
 
-  // 🗑️ Delete Order
+  // Delete Order
   const handleDeleteOrder = async (orderId) => {
     if (!window.confirm("Are you sure you want to delete this order?")) return;
     try {
       await deleteOrderById(orderId).unwrap();
-      alert("✅ Order deleted successfully!");
+      alert(" Order deleted successfully!");
       refetch();
     } catch (error) {
       console.log("Failed to delete order:", error);
-      alert("❌ Failed to delete order");
+      alert(" Failed to delete order");
     }
   };
 
-  // ✏️ Edit Order
+  //  Edit Order
   const handleEditOrder = (order) => {
     setSelectedOrder(order);
     setIsModalOpen(true);
@@ -40,13 +39,13 @@ const ManageOrder = () => {
     setIsModalOpen(false);
   };
 
-  // 📅 Format Date
+  // Format Date
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "short", day: "numeric" };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  // 🎨 Status Badge Color
+  //  Status Badge Color
   const getStatusStyle = (status) => {
     switch (status) {
       case "Pending":
@@ -74,13 +73,13 @@ const ManageOrder = () => {
   if (isError)
     return (
       <div className="text-center text-red-600 font-medium mt-10">
-        ❌ Failed to load orders.
+         Failed to load orders.
       </div>
     );
 
   return (
     <section className="py-6 min-h-screen">
-      <div className="w-full max-w-6xl mx-auto px-4">
+      <div className="w-full max-w-6xl mx-auto px-2">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div>
@@ -91,12 +90,7 @@ const ManageOrder = () => {
               View, update, and manage all customer orders
             </p>
           </div>
-          <Link
-            to="/orders"
-            className="bg-[#ed3849] hover:bg-[#d23141] text-white text-sm font-semibold px-5 py-2 rounded-md shadow-md transition-all duration-200 cursor-pointer"
-          >
-            See All
-          </Link>
+          
         </div>
 
         {/* Table */}
@@ -104,22 +98,16 @@ const ManageOrder = () => {
           <table className="min-w-full table-auto">
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
-                {[
-                  "No",
-                  "Order ID",
-                  "Email",
-                  "Status",
-                  "Date",
-                  "Edit",
-                  "Delete",
-                ].map((header, i) => (
-                  <th
-                    key={i}
-                    className="px-6 py-4 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider"
-                  >
-                    {header}
-                  </th>
-                ))}
+                {["No", "Order ID", "Email", "Status", "Date", "Action"].map(
+                  (header, i) => (
+                    <th
+                      key={i}
+                      className="px-2 py-3 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider"
+                    >
+                      {header}
+                    </th>
+                  )
+                )}
               </tr>
             </thead>
 
@@ -130,18 +118,18 @@ const ManageOrder = () => {
                     key={order._id}
                     className="hover:bg-indigo-50 transition-colors duration-200"
                   >
-                    <td className="px-6 py-4 text-sm text-gray-700 font-medium">
+                    <td className="px-2 py-3 text-sm text-gray-700 font-medium">
                       {index + 1}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-700 font-mono">
+                    <td className="px-2 py-3 text-sm text-gray-700 font-mono">
                       {order.orderId || order._id}
                     </td>
-                    <td className="px-6 py-4 text-sm text-gray-700">
+                    <td className="px-2 py-3 text-sm text-gray-700">
                       {order?.email}
                     </td>
 
                     {/* Status */}
-                    <td className="px-6 py-4">
+                    <td className="px-2 py-3">
                       <span
                         className={`px-3 py-1 text-xs font-semibold rounded-full shadow-sm border ${getStatusStyle(
                           order.status
@@ -151,27 +139,28 @@ const ManageOrder = () => {
                       </span>
                     </td>
 
-                    <td className="px-6 py-4 text-sm text-gray-700">
+                    <td className="px-2 py-3 text-sm text-gray-700">
                       {formatDate(order?.updatedAt)}
                     </td>
 
-                    {/* Edit Button */}
-                    <td className="px-6 py-4 text-sm text-gray-700">
+                    {/* Action Buttons */}
+                    <td className="px-2 py-3 text-sm text-gray-700 flex gap-2">
+                        <Link
+                          to={`/orders/${order._id}`}
+                          className="bg-gray-100 text-gray-700 hover:bg-gray-700 hover:text-white font-semibold px-2 py-1.5 rounded-md shadow-sm transition-all duration-200 cursor-pointer"
+                        >
+                          View
+                        </Link>
                       <button
                         onClick={() => handleEditOrder(order)}
-                        className="bg-blue-100 text-blue-700 hover:bg-blue-600 hover:text-white font-semibold px-4 py-1.5 rounded-md shadow-sm transition-all duration-200 cursor-pointer"
-                        type="button"
+                        className="bg-blue-100 text-blue-700 hover:bg-blue-600 hover:text-white font-semibold px-3 py-1 rounded-md shadow-sm transition-all duration-200 cursor-pointer"
                       >
                         Edit
                       </button>
-                    </td>
 
-                    {/* Delete Button */}
-                    <td className="px-6 py-4 text-sm text-gray-700">
                       <button
                         onClick={() => handleDeleteOrder(order._id)}
-                        className="bg-red-100 text-red-700 hover:bg-red-600 hover:text-white font-semibold px-4 py-1.5 rounded-md shadow-sm transition-all duration-200 cursor-pointer"
-                        type="button"
+                        className="bg-red-100 text-red-700 hover:bg-red-600 hover:text-white font-semibold px-3 py-1 rounded-md shadow-sm transition-all duration-200 cursor-pointer"
                       >
                         Delete
                       </button>
