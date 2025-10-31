@@ -9,7 +9,6 @@ export const authApi = createApi({
     prepareHeaders: (headers) => {
       const storedData = JSON.parse(localStorage.getItem("user"));
       const token = storedData?.user?.token;
-      console.log(token)
 
       if (token) {
         headers.set("authorization", `Bearer ${token}`);
@@ -17,6 +16,7 @@ export const authApi = createApi({
       return headers;
     },
   }),
+  tagTypes: ["Users"],
   endpoints: (builder) => ({
     registerUser: builder.mutation({
       query: (newUser) => ({
@@ -24,6 +24,7 @@ export const authApi = createApi({
         method: "POST",
         body: newUser,
       }),
+      invalidatesTags:["Users"]
     }),
 
     loginUser: builder.mutation({
@@ -47,6 +48,28 @@ export const authApi = createApi({
         body: profileData,
       }),
     }),
+    getAllUsers: builder.query({
+      query: () => ({
+        url: "/users",
+        method: "GET",
+      }),
+      providesTags: ["Users"],
+    }),
+    deleteUser: builder.mutation({
+      query: (userId) => ({
+        url: `/users/${userId}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Users"],
+    }),
+    updateUserRole: builder.mutation({
+      query: ({ userId, role }) => ({
+        url: `/users/${userId}`,
+        body: {role},
+        method: "PUT",
+      }),
+      invalidatesTags: ["Users"],
+    }),
   }),
 });
 
@@ -55,6 +78,9 @@ export const {
   useLoginUserMutation,
   useLogOutUserMutation,
   useEditProfileMutation,
+  useGetAllUsersQuery,
+  useDeleteUserMutation,
+  useUpdateUserRoleMutation,
 } = authApi;
 
 export default authApi;

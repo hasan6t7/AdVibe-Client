@@ -8,7 +8,8 @@ import { MdRateReview } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../Redux/features/auth/authSlice";
 const DashLayout = () => {
-  const { user } = useSelector((state) => state.auth.user);
+  const data = useSelector((state) => state.auth.user);
+  const user = data?.user;
   const role = user?.role;
   const navigate = useNavigate();
 
@@ -34,7 +35,11 @@ const DashLayout = () => {
       label: "Manage Order",
       icon: <FaMoneyCheckAlt size={18} />,
     },
-    { path: "/dashboard/users", label: "Users", icon: <FaUsers size={18} /> },
+    {
+      path: "/dashboard/manage-users",
+      label: "Users",
+      icon: <FaUsers size={18} />,
+    },
   ];
 
   const userNavItems = [

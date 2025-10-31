@@ -15,6 +15,7 @@ import OrderDetails from "../Pages/Dashboard/User/orders/OrderDetails";
 import UserPayments from "../Pages/Dashboard/User/orders/UserPayments";
 import UserReviews from "../Pages/Dashboard/User/reviews/UserReviews";
 import UserProfile from "../Pages/Dashboard/User/profile/UserProfile";
+import ManageUsers from "../Pages/Dashboard/Admin/Manage Users/ManageUsers";
 
 const router = createBrowserRouter([
   {
@@ -35,11 +36,7 @@ const router = createBrowserRouter([
 
   {
     path: "/dashboard",
-    element: (
-      
-        <DashLayout />
-      
-    ),
+    element: <DashLayout />,
     errorElement: <FourOFour />,
     children: [
       // user
@@ -54,6 +51,7 @@ const router = createBrowserRouter([
       { path: "manage-product", element: <div>Manage Product</div> },
       { path: "update-product/:id", element: <div>Update Product</div> },
       { path: "manage-order", element: <div>Manage Order</div> },
+      { path: "manage-users", element: <ManageUsers /> },
     ],
   },
 ]);

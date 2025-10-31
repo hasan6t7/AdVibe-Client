@@ -4,7 +4,8 @@ import AdminDash from "../Admin/AdminDash";
 import UserDash from "../User/UserDash";
 
 const DashboardHome = () => {
-  const { user } = useSelector((state) => state.auth.user);
+  const data = useSelector((state) => state.auth.user);
+  const user = data?.user;
   const role = user?.role;
 
   if (role === "admin") {
