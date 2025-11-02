@@ -16,7 +16,7 @@ const TextInput = ({ label, name, placeholder, value, type, onChange }) => {
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition duration-150"
+        className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#ed3849]  transition duration-150"
       />
     </div>
   );
