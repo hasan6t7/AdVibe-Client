@@ -1,12 +1,15 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { getBaseUrl } from "../../../../Utils/getBaseUrl";
 
-const UploadImage = ({ name, placeholder, setImage, label }) => {
+const UploadImage = ({ name, placeholder, setImage, label, value }) => {
   const [loading, setLoading] = useState(false);
-  const [url, setUrl] = useState("");
+  const [preview, setPreview] = useState(value || "");
 
-  
+  useEffect(() => {
+    setPreview(value || "");
+  }, [value]);
+
   const convertBase64 = (file) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
@@ -16,7 +19,6 @@ const UploadImage = ({ name, placeholder, setImage, label }) => {
     });
   };
 
-  
   const uploadSingleImage = async (base64) => {
     try {
       setLoading(true);
@@ -24,42 +26,26 @@ const UploadImage = ({ name, placeholder, setImage, label }) => {
         image: base64,
       });
       const imageUrl = res.data;
-      
-      
 
-      setUrl(imageUrl);
+      setPreview(imageUrl);
       setImage(imageUrl);
-      alert(" Image uploaded successfully!");
+      alert("Image uploaded successfully!");
     } catch (error) {
-      console.error(" Failed to upload image:", error);
+      console.error("Failed to upload image:", error);
+      alert("Failed to upload image!");
     } finally {
       setLoading(false);
     }
   };
 
- 
   const uploadImage = async (e) => {
-    const files = e.target.files;
-    
-    if (!files || files.length === 0) {
-      alert("Please select at least one image.");
+    const file = e.target.files[0];
+    if (!file) {
+      alert("Please select an image.");
       return;
     }
-
-    
-    if (files.length === 1) {
-      const base64 = await convertBase64(files[0]);
-      uploadSingleImage(base64);
-      return;
-    }
-
-    
-    const base64s = [];
-    for (let i = 0; i < files.length; i++) {
-      const base = await convertBase64(files[i]);
-      base64s.push(base);
-    }
-    console.log("Multiple images (not uploaded yet):", base64s);
+    const base64 = await convertBase64(file);
+    uploadSingleImage(base64);
   };
 
   return (
@@ -82,11 +68,11 @@ const UploadImage = ({ name, placeholder, setImage, label }) => {
         <p className="text-sm text-[#ed3849] animate-pulse">Uploading...</p>
       )}
 
-      {url && (
+      {preview && (
         <div className="mt-3">
           <img
-            src={url}
-            alt="Uploaded"
+            src={preview}
+            alt="Preview"
             className="w-32 h-32 object-cover rounded-lg shadow-md border border-[#ed3849]"
           />
         </div>

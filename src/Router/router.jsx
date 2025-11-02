@@ -19,6 +19,7 @@ import ManageUsers from "../Pages/Dashboard/Admin/Manage Users/ManageUsers";
 import ManageOrder from "../Pages/Dashboard/Admin/Manage Order/ManageOrder";
 import AddProduct from "../Pages/Dashboard/Admin/Add Product/addProduct";
 import ManageProduct from "../Pages/Dashboard/Admin/Manage Product/ManageProduct";
+import UpdateProduct from "../Pages/Dashboard/Admin/Update Product/UpdateProduct";
 
 const router = createBrowserRouter([
   {
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
       // admin
       { path: "add-product", element: <AddProduct /> },
       { path: "manage-product", element: <ManageProduct /> },
-      { path: "update-product/:id", element: <div>Update Product</div> },
+      { path: "update-product/:id", element: <UpdateProduct /> },
       { path: "manage-order", element: <ManageOrder /> },
       { path: "manage-users", element: <ManageUsers /> },
     ],

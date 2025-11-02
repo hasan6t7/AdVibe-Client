@@ -18,10 +18,9 @@ const ManageProduct = () => {
 
   const products = data?.data?.products || [];
   const totalPages = data?.data?.totalPage || 0;
-  console.log(products);
 
   const handleDelete = async (id) => {
-    try {
+    try { 
       await deleteProduct(id).unwrap();
       alert(" Product deleted successfully!");
       refetch();
