@@ -1,19 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import products from "../../../public/products.json";
 import ProductCard from "../Shop/ProductCard";
+import { useGetAllProductsQuery } from "../../Redux/features/Products/productsApi";
 
 const Category = () => {
   const { categoryName } = useParams();
+  console.log(categoryName)
+
+  const { data, error, isError, isLoading } = useGetAllProductsQuery({});
+  
+
+  const products = data?.data?.products || [];
+
 
   const [filterProduct, setFilterProduct] = useState([]);
   useEffect(() => {
-    const filtered = products?.filter(
-      (product) => product.category === categoryName.toLowerCase()
+    const filtered = products.filter(
+      (product) => product.category === categoryName
     );
+    
     setFilterProduct(filtered);
   }, []);
 
+  if (isLoading)
+    return <p className="text-center mt-10">Loading products...</p>;
+  if (isError)
+    return (
+      <p className="text-center mt-10 text-red-500">
+        {error?.data?.message || "Something went wrong"}
+      </p>
+    );
 
   return (
     <div className="p-6">
