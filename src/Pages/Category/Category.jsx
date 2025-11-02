@@ -5,22 +5,33 @@ import { useGetAllProductsQuery } from "../../Redux/features/Products/productsAp
 
 const Category = () => {
   const { categoryName } = useParams();
-  console.log(categoryName)
-
-  const { data, error, isError, isLoading } = useGetAllProductsQuery({});
   
 
-  const products = data?.data?.products || [];
+  const { data, error, isError, isLoading } = useGetAllProductsQuery({
+    category: "",
+    color: "",
+    minPrice: "",
+    maxPrice: "",
+    page: "",
+    limit: "",
+  });
 
+  const products = data?.data?.products || [];
+  
 
   const [filterProduct, setFilterProduct] = useState([]);
   useEffect(() => {
-    const filtered = products.filter(
-      (product) => product.category === categoryName
-    );
-    
-    setFilterProduct(filtered);
-  }, []);
+    if (products.length > 0 && categoryName) {
+      const filtered = products.filter(
+        (product) =>
+          product.category?.toLowerCase() === categoryName.toLowerCase()
+      );
+
+      setFilterProduct(filtered);
+    } else {
+      setFilterProduct([]);
+    }
+  }, [categoryName, products]);
 
   if (isLoading)
     return <p className="text-center mt-10">Loading products...</p>;

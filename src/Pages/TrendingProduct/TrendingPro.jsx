@@ -1,12 +1,31 @@
 import React, { useState } from "react";
-import products from "../../../public/products.json";
+
 import ProductCard from "../Shop/ProductCard";
+import { useGetAllProductsQuery } from "../../Redux/features/Products/productsApi";
 
 const TrendingPro = () => {
   const [visibleProduct, setVisibleProduct] = useState(8);
   const handleLoadMore = () => {
     setVisibleProduct((prv) => prv + 4);
   };
+  const { data, error, isError, isLoading } = useGetAllProductsQuery({
+    category: "",
+    color: "",
+    minPrice: "",
+    maxPrice: "",
+    page: "",
+    limit: "",
+  });
+
+  const products = data?.data?.products || [];
+  if (isLoading)
+    return <p className="text-center mt-10">Loading products...</p>;
+  if (isError)
+    return (
+      <p className="text-center mt-10 text-red-500">
+        {error?.data?.message || "Something went wrong"}
+      </p>
+    );
   return (
     <div>
       <h1 className="text-center text-5xl playfair">Trending Products</h1>
