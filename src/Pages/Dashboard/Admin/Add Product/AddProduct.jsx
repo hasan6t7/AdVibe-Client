@@ -96,7 +96,7 @@ const AddProduct = () => {
           label="Image"
           name="image"
           id="image"
-          value={(e) => setImage(e.target.value)}
+          // value={(e) => setImage(e.target.value)}
           placeholder="Upload Image"
           setImage={setImage}
         />
