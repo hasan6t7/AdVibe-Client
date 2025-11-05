@@ -50,7 +50,7 @@ const Navbar = ({ onCartToggle }) => {
   const dropdownMenu =
     user && user?.role === "admin" ? adminDropMenu : userDropMenu;
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div>Loading.......</div>;
   if (error) return <div>{error}</div>;
 
   return (
