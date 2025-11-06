@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="max-w-[1400px] mx-auto px-6 pt-10 ">
+    <footer className="max-w-[1400px] mx-auto bg-[#F4E5EC] px-6 pt-10 ">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         <div className="flex flex-col gap-2">
           <h4 className="mb-4 text-2xl playfair">CONTACT INFO</h4>
@@ -38,35 +38,35 @@ const Footer = () => {
           <h4 className="mb-4 text-2xl playfair text-black ">USEFUL LINK</h4>
           <Link to={"#"}>Help</Link>
           <Link to={"#"}>Track My Order</Link>
-          <Link to={"#"}>Men</Link>
-          <Link to={"#"}>Women</Link>
-          <Link to={"#"}>Dresses</Link>
+          <Link to={"#"}>Roses</Link>
+          <Link to={"#"}>Marie Gold</Link>
+          <Link to={"#"}>Lotus</Link>
         </div>
         <div className="flex flex-col gap-2">
           <h4 className="mb-4 text-2xl playfair">INSTAGRAM</h4>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             <img
-              src="https://i.ibb.co.com/qFs2zr7q/instagram-1.jpg"
+              src="https://i.ibb.co.com/ZRXr3FL5/Flower-01.png"
               alt="instagram"
             />
             <img
-              src="https://i.ibb.co.com/fzNmwkw3/instagram-2.jpg"
+              src="https://i.ibb.co.com/XxMc6pYj/Rectangle-4.png"
               alt="instagram"
             />
             <img
-              src="https://i.ibb.co.com/Q3rnNZ1L/instagram-3.jpg"
+              src="https://i.ibb.co.com/xWQCF6n/Rectangle-5.png"
               alt="instagram"
             />
             <img
-              src="https://i.ibb.co.com/ccTkMhJ2/instagram-4.jpg"
+              src="https://i.ibb.co.com/xSV3qt5D/Rectangle-6.png"
               alt="instagram"
             />
             <img
-              src="https://i.ibb.co.com/GfVWFQJL/instagram-5.jpg"
+              src="https://i.ibb.co.com/ZRXr3FL5/Flower-01.png"
               alt="instagram"
             />
             <img
-              src="https://i.ibb.co.com/hRXzvnxh/instagram-6.jpg"
+              src="https://i.ibb.co.com/XxMc6pYj/Rectangle-4.png"
               alt="instagram"
             />
           </div>

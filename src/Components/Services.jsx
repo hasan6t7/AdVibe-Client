@@ -14,7 +14,7 @@ const Services = () => {
           <h4 className="text-2xl font-bold playfair mt-4 mb-2">
             Free Delivery
           </h4>
-          <p>
+          <p className="text-gray-600 text-sm">
             Offers convenience and the ability to shop from anywhere, anytime.
           </p>
         </div>
@@ -25,7 +25,7 @@ const Services = () => {
           <h4 className="text-2xl font-bold playfair mt-4 mb-2">
             100% Money Back Guaranty
           </h4>
-          <p>
+          <p className="text-gray-600 text-sm">
             E-commerce have a review system where customers can share feedback.
           </p>
         </div>
@@ -36,7 +36,7 @@ const Services = () => {
           <h4 className="text-2xl font-bold playfair mt-4 mb-2">
             Strong Support
           </h4>
-          <p>
+          <p className="text-gray-600 text-sm">
             Offer customer support services to assist customers with queries and
             issues.
           </p>
