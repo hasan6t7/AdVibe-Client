@@ -15,7 +15,7 @@ const Root = () => {
       <nav className="sticky top-0 right-0 left-0 z-40  transition-all duration-500 backdrop-blur-sm">
         <Navbar onCartToggle={handleCartToggle}></Navbar>
       </nav>
-      <main className="max-w-[1200px] mx-auto">
+      <main className="max-w-[1400px] mx-auto">
         <Outlet></Outlet>
       </main>
       <Footer></Footer>

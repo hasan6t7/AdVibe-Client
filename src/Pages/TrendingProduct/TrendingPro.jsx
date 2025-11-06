@@ -28,7 +28,7 @@ const TrendingPro = () => {
       </p>
     );
   return (
-    <div>
+    <div className="p-6">
       <h1 className="text-center text-5xl playfair">Trending Products</h1>
       <p className="lg:w-2/3 mx-auto text-center mt-3 text-sm text-gray-700">
         Discover the latest trends and express your unique style with our

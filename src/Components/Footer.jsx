@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const Footer = () => {
   return (
-    <footer className="max-w-[1200px] mx-auto px-6 pt-10 ">
+    <footer className="max-w-[1400px] mx-auto px-6 pt-10 ">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         <div className="flex flex-col gap-2">
           <h4 className="mb-4 text-2xl playfair">CONTACT INFO</h4>

@@ -52,7 +52,7 @@ const Navbar = ({ onCartToggle }) => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div className="navbar max-w-[1200px] mx-auto p-6">
+    <div className="navbar max-w-[1400px] mx-auto p-6">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="pr-3 lg:hidden">
