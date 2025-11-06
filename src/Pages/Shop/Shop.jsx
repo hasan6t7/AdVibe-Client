@@ -59,8 +59,7 @@ const Shop = () => {
   const startProduct = (currentPage - 1) * productPerPage + 1;
   const endProduct = startProduct + products.length - 1;
 
-  if (isLoading)
-    return <Loader />;
+  if (isLoading) return <Loader />;
   if (isError)
     return (
       <p className="text-center mt-10 text-red-500">

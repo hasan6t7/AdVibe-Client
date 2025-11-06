@@ -1,50 +1,56 @@
 import React from "react";
-import { Link } from "react-router";
 
 const Trends = () => {
+  const cards = [
+    {
+      img: "https://i.ibb.co/sMk85z1/pngwing-6.png",
+      bg: "#A7216226",
+      title: "Pink Flower Tree",
+    },
+    {
+      img: "https://i.ibb.co.com/WW2QrCsr/pngwing-8.png",
+      bg: "#0597A026",
+      title: "Blue Flower Tree",
+    },
+    {
+      img: "https://i.ibb.co/27yctVxM/pngwing-7.png",
+      bg: "#477D1126",
+      title: "Green Flower Tree",
+    },
+  ];
+
   return (
-    <section className="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 items-center my-20">
-      <div className="relative">
-        <img
-          src="https://i.ibb.co.com/DHvzpqV8/card-1.png"
-          alt="Womens Shirt"
-        />
-        <div
-          className="absolute top-1/2 left-1/2 translate-x-[-15%] -translate-y-1/2
-"
-        >
-          <p className="text-[#ed3849] mb-1">2023 Trend</p>
-          <h4 className="playfair text-2xl font-bold">Womens Shirt</h4>
-          <Link href="#" className="text-sm text-gray-700">Discover More +</Link>
-        </div>
+    <section className="p-6  my-20">
+      <div className="mb-16">
+        <h1 className="text-center text-5xl playfair">Featured Flowers</h1>
+        <p className="lg:w-2/3 mx-auto text-center mt-3 text-sm text-gray-700">
+          Discover the latest trends and express your unique style with our
+          Women's Fashion website. Explore a curated collection of clothing,
+          accessories, and footwear that caters to every taste and occasion.
+        </p>
       </div>
-      <div className="relative">
-        <img
-          src="https://i.ibb.co.com/zzBykbm/card-2.png"
-          alt="Womens Dresses"
-        />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {cards.map((card, idx) => (
         <div
-          className="absolute top-1/2 left-1/2 translate-x-[-15%] -translate-y-1/2
-"
+          key={idx}
+          className="flex flex-col items-center bg-white  rounded-lg h-[400px] overflow-hidden"
         >
-          <p className="text-[#ed3849] mb-1">2023 Trend</p>
-          <h4 className="playfair text-2xl font-bold">Womens Dresses</h4>
-          <Link href="#" className="text-sm text-gray-700">Discover More +</Link>
+          {/* Top colored section */}
+          <div
+            className="flex justify-center items-center w-full h-[300px] rounded-t-[300px]"
+            style={{ backgroundColor: card.bg }}
+          >
+            <img
+              src={card.img}
+              alt={card.title}
+              className="object-contain max-h-[220px]"
+            />
+          </div>
+
+          {/* Title */}
+          <p className="mt-4 text-center text-gray-700 font-medium">{card.title}</p>
         </div>
-      </div>
-      <div className="relative">
-        <img
-          src="https://i.ibb.co.com/ZR1k0hQS/card-3.png"
-          alt="Womens Casuals"
-        />
-        <div
-          className="absolute top-1/2 left-1/2 translate-x-[-15%] -translate-y-1/2
-"
-        >
-          <p className="text-[#ed3849] mb-1">2023 Trend</p>
-          <h4 className="playfair text-2xl font-bold">Womens Casuals</h4>
-          <Link href="#" className="text-sm text-gray-700">Discover More +</Link>
-        </div>
+      ))}
       </div>
     </section>
   );
