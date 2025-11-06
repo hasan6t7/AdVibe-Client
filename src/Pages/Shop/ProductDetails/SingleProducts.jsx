@@ -5,6 +5,7 @@ import RatingStar from "../../../Components/RatingStar";
 import ReviewCard from "../Reviews/ReviewCard";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../Redux/features/cart/cartSlice";
+import Loader from "../../../Components/Loader";
 
 const SingleProducts = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const SingleProducts = () => {
   const { singleProduct, reviews } = productDetails || {};
  
 
-  if (isLoading) return <div>loading....</div>;
+  if (isLoading) return <Loader />;
   if (isError) return <div>Error...</div>;
   return (
     <div className="p-6 mt-16 mb-20">

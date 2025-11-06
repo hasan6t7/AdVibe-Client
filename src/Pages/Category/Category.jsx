@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router";
 import ProductCard from "../Shop/ProductCard";
 import { useGetAllProductsQuery } from "../../Redux/features/Products/productsApi";
+import Loader from "../../Components/Loader";
 
 const Category = () => {
   const { categoryName } = useParams();
-  
 
   const { data, error, isError, isLoading } = useGetAllProductsQuery({
     category: "",
@@ -16,8 +16,7 @@ const Category = () => {
     limit: "",
   });
 
-  const products = data?.data?.products || [];
-  
+  const products = useMemo(() => data?.data?.products || [], [data]);
 
   const [filterProduct, setFilterProduct] = useState([]);
   useEffect(() => {
@@ -33,8 +32,7 @@ const Category = () => {
     }
   }, [categoryName, products]);
 
-  if (isLoading)
-    return <p className="text-center mt-10">Loading products...</p>;
+  if (isLoading) return <Loader />;
   if (isError)
     return (
       <p className="text-center mt-10 text-red-500">

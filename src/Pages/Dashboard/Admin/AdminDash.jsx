@@ -3,12 +3,13 @@ import { useSelector } from "react-redux";
 import AdminStats from "./Admin Stats/AdminStats";
 import { useGetAdminStatsQuery } from "../../../Redux/features/Stats/statsApi";
 import AdminStatsChart from "./Admin Stats/AdminStatsChart";
+import Loader from "../../../Components/Loader";
 
 const AdminDash = () => {
   const { user } = useSelector((state) => state.auth.user);
   const { data: adminStats, isLoading } = useGetAdminStatsQuery();
 
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading) return <Loader />;
   return (
     <div className="">
       <div className="mb-8 ">

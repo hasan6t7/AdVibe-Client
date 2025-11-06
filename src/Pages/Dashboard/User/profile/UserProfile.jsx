@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import { useEditProfileMutation } from "../../../../Redux/features/auth/authApi";
 import { setUser } from "../../../../Redux/features/auth/authSlice";
 import { useNavigate } from "react-router";
+import Loader from "../../../../Components/Loader";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -51,7 +52,7 @@ console.log(user)
       console.log(error);
     }
   };
-  if (isLoading) return <div className="">loading...</div>;
+  if (isLoading) return <Loader />;
 
   if (isError)
     return (

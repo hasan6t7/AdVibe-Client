@@ -5,22 +5,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, useNavigate } from "react-router";
 import { logout } from "../Redux/features/auth/authSlice";
 import { useLogOutUserMutation } from "../Redux/features/auth/authApi";
+import Loader from "./Loader";
 
 const avatar = "https://i.ibb.co.com/gLDzNv8G/avatar.png";
 
 const Navbar = ({ onCartToggle }) => {
-  const data  = useSelector((state) => state.auth?.user );
-  const user = data?.user
-  
-  
- 
+  const data = useSelector((state) => state.auth?.user);
+  const user = data?.user;
+
   const products = useSelector((state) => state.cart.products);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdown] = useState(false);
 
   const [logOutUser, { isLoading, error }] = useLogOutUserMutation();
-   
 
   const handleDropdownToogle = () => {
     setIsDropdown(!isDropdownOpen);
@@ -50,7 +48,7 @@ const Navbar = ({ onCartToggle }) => {
   const dropdownMenu =
     user && user?.role === "admin" ? adminDropMenu : userDropMenu;
 
-  if (isLoading) return <div>Loading.......</div>;
+  if (isLoading) return <Loader />;
   if (error) return <div>{error}</div>;
 
   return (

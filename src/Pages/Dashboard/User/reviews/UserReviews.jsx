@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useGetReviewByUserIdQuery } from "../../../../Redux/features/Reviews/reviewsApi";
 import { Link } from "react-router";
+import Loader from "../../../../Components/Loader";
 
 const UserReviews = () => {
   const { user } = useSelector((state) => state.auth.user);
@@ -10,12 +11,7 @@ const UserReviews = () => {
   );
   const reviews = data?.data || [];
 
-  if (isLoading)
-    return (
-      <div className="">
-        loading...
-      </div>
-    );
+  if (isLoading) return <Loader />;
 
   if (isError)
     return (

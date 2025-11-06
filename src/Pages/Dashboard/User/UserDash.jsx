@@ -3,13 +3,14 @@ import { useSelector } from "react-redux";
 import { useGetUserStatsQuery } from "../../../Redux/features/Stats/statsApi";
 import UserStats from "./UserStats";
 import UserStatsChart from "./UserStatsChart";
+import Loader from "../../../Components/Loader";
 
 const UserDash = () => {
   const { user } = useSelector((state) => state.auth.user);
   const { data, isLoading } = useGetUserStatsQuery(user?.email);
   const userStats = data?.data || {};
-  //   const { totalPayment, totalReviews, totalPurchasedProduct } = userStats;
-  if (isLoading) return <div>loading...</div>;
+
+  if (isLoading) return <Loader />;
   return (
     <div className="">
       <div className="mb-8 ">

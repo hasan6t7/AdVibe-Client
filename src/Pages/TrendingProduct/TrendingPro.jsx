@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import ProductCard from "../Shop/ProductCard";
 import { useGetAllProductsQuery } from "../../Redux/features/Products/productsApi";
+import Loader from "../../Components/Loader";
 
 const TrendingPro = () => {
   const [visibleProduct, setVisibleProduct] = useState(8);
@@ -19,7 +20,7 @@ const TrendingPro = () => {
 
   const products = data?.data?.products || [];
   if (isLoading)
-    return <p className="text-center mt-10">Loading products...</p>;
+    return <Loader />;
   if (isError)
     return (
       <p className="text-center mt-10 text-red-500">

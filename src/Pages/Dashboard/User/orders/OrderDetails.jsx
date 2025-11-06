@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router";
 import { useGetOrderByIdQuery } from "../../../../Redux/features/orders/orderApi";
 import TimelineStep from "../../../../Components/TimelineStep";
+import Loader from "../../../../Components/Loader";
 
 const steps = [
   {
@@ -46,7 +47,7 @@ const OrderDetails = () => {
   const { orderId } = useParams();
   const { data, isLoading, isError, error } = useGetOrderByIdQuery(orderId);
   isError && <div>Can not fetch Order data. {error}</div>;
-  isLoading && <div>loading...</div>;
+  isLoading && <Loader />;
   const order = data?.data || {};
   const isCompleted = (status) => {
     const statuses = ["Pending", "Processing", "Shipped", "Completed"];

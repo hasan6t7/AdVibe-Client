@@ -3,6 +3,7 @@ import TextInput from "./TextInput";
 import UploadImage from "./UploadImage";
 import { useSelector } from "react-redux";
 import { useAddProductMutation } from "../../../../Redux/features/Products/productsApi";
+import Loader from "../../../../Components/Loader";
 
 const AddProduct = () => {
   const data = useSelector((state) => state.auth.user);
@@ -56,7 +57,7 @@ const AddProduct = () => {
     }
   };
 
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading) return <Loader />;
   if (isError) return <div>Error on Add Product</div>;
 
   return (

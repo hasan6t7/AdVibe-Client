@@ -2,32 +2,28 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useGetOrderByEmailQuery } from "../../../../Redux/features/orders/orderApi";
 import { Link } from "react-router";
+import Loader from "../../../../Components/Loader";
 
 const UserOrders = () => {
   const { user } = useSelector((state) => state.auth.user);
   const { data, isLoading } = useGetOrderByEmailQuery(user?.email);
-  isLoading && <div>loading...</div>;
+  if (isLoading) return <Loader />;
   const orders = data?.data || [];
 
   return (
-    <section className="py-6 min-h-screen">
-      <div className="w-full max-w-6xl mx-auto px-4">
+    <section className="py-6 ">
+      <div className=" px-4">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div>
             <h2 className="text-3xl font-bold">
-               Your <span className="text-[#ed3849]">Orders</span>
+              Your <span className="text-[#ed3849]">Orders</span>
             </h2>
             <p className="text-gray-500 mt-1">
               Track all your purchases at a glance
             </p>
           </div>
-          <button
-            className="bg-[#ed3849] hover:bg-[#d23141] text-white text-sm font-semibold px-5 py-2 rounded-md shadow-md transition-all duration-200 cursor-pointer"
-            type="button"
-          >
-            See All
-          </button>
+         
         </div>
 
         {/* Table Container */}
@@ -103,7 +99,7 @@ const UserOrders = () => {
                     colSpan="6"
                     className="text-center text-gray-500 py-6 text-sm italic"
                   >
-                    No orders found 
+                    No orders found
                   </td>
                 </tr>
               )}

@@ -5,6 +5,7 @@ import { useLoginUserMutation } from "../../Redux/features/auth/authApi";
 import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../Redux/features/auth/authSlice";
+import Loader from "../../Components/Loader";
 
 const Login = () => {
   const [loginUser, { isLoading, error }] = useLoginUserMutation();
@@ -36,7 +37,7 @@ const Login = () => {
       console.log("Error Failed", error);
     }
   };
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
   if (error) return <div>{error}</div>;
   return (
     <div className="p-6 flex items-center justify-center min-h-screen">

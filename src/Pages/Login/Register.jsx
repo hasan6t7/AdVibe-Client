@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { useRegisterUserMutation } from "../../Redux/features/auth/authApi";
 import Swal from "sweetalert2";
+import Loader from "../../Components/Loader";
 
 const Register = () => {
   const [registerUser, { isLoading, error }] = useRegisterUserMutation();
@@ -28,7 +29,7 @@ const Register = () => {
       console.log("Registration Failed", err);
     }
   };
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
   if (error) return <div>{error}</div>;
   return (
     <div className="p-6 flex items-center justify-center min-h-screen">

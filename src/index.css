@@ -29,3 +29,35 @@
   font-weight: 900;
 }
 
+
+@layer components {
+  .loader {
+    @apply inline-block relative box-border rounded-full w-12 h-12;
+    border-width: 3px;
+    border-color: #ed3849; /* main color */
+    border-style: solid solid dotted dotted;
+    animation: rotation 2s linear infinite;
+  }
+
+  .loader::after {
+    content: '';
+    @apply absolute inset-0 m-auto rounded-full w-6 h-6;
+    box-sizing: border-box;
+    border-width: 3px;
+    border-color: #ed3849;
+    border-style: solid solid dotted;
+    animation: rotationBack 1s linear infinite;
+    transform-origin: center center;
+  }
+}
+
+@keyframes rotation {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes rotationBack {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
+}
+

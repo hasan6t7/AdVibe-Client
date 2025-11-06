@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { getBaseUrl } from "../../Utils/getBaseUrl";
 import TimelineStep from "../../Components/TimelineStep";
+import Loader from "../../Components/Loader";
 
 const steps = [
   {
@@ -71,7 +72,7 @@ const PaymentSuccess = () => {
     }
   }, []);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <Loader />;
   const isCompleted = (status) => {
     const statuses = ["Pending", "Processing", "Shipped", "Completed"];
     return statuses.indexOf(status) < statuses.indexOf(order?.status);

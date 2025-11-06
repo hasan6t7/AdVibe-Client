@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useGetAllProductsQuery } from "../../Redux/features/Products/productsApi";
 import ProductCard from "./ProductCard";
 import ShopFiltering from "./ShopFiltering";
+import Loader from "../../Components/Loader";
 
 const Shop = () => {
   const filter = {
@@ -59,7 +60,7 @@ const Shop = () => {
   const endProduct = startProduct + products.length - 1;
 
   if (isLoading)
-    return <p className="text-center mt-10">Loading products...</p>;
+    return <Loader />;
   if (isError)
     return (
       <p className="text-center mt-10 text-red-500">

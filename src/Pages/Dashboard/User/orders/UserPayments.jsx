@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { useGetOrderByEmailQuery } from "../../../../Redux/features/orders/orderApi";
 import { FaMoneyBillWave, FaCalendarAlt, FaInfoCircle } from "react-icons/fa";
+import Loader from "../../../../Components/Loader";
 
 const UserPayments = () => {
   const { user } = useSelector((state) => state.auth.user);
@@ -10,9 +11,7 @@ const UserPayments = () => {
 
   if (isLoading)
     return (
-      <div className="flex justify-center items-center h-60">
-        Loading....
-      </div>
+     <Loader />
     );
 
   if (isError)
@@ -25,7 +24,7 @@ const UserPayments = () => {
   const totalPayment = orders.reduce((acc, order) => acc + order.amount, 0);
 
   return (
-    <div className="py-6 min-h-screen rounded-lg">
+    <div className="py-6  rounded-lg">
       {/* Header */}
       <div className="mb-8 ">
         <h3 className="text-3xl font-bold text-[#d23141] tracking-wide">
