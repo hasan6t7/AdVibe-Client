@@ -94,7 +94,7 @@ const Navbar = ({ onCartToggle }) => {
 
   return (
     <nav className="sticky top-0 z-50 backdrop-blur-md bg-white/80 shadow-md border-b border-gray-100">
-      <div className="max-w-[1300px] mx-auto px-5 py-4 flex items-center justify-between">
+      <div className="max-w-[1400px] mx-auto px-6 py-4 flex items-center justify-between">
         {/* Brand */}
         <Link
           to="/"

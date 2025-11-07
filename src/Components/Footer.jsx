@@ -16,8 +16,13 @@ const Footer = () => {
       <div className="max-w-[1400px] mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 animate-fadeIn">
         {/* Brand / About */}
         <div>
-          <h2 className="text-4xl playfair text-[#d23141] mb-4">AdVibe</h2>
-          <p className="text-gray-600 leading-relaxed mb-4">
+          <Link
+            to="/"
+            className="text-3xl font-bold playfair text-gray-900 transition-all"
+          >
+            Ad<span className="text-[#d23141]">V</span>ibe
+          </Link>
+          <p className="text-gray-600 leading-relaxed my-4">
             Bloom with us — delivering joy and elegance through beautifully
             curated floral collections. Let every petal tell your story.
           </p>

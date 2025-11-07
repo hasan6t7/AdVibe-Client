@@ -16,6 +16,10 @@ const ManageUsers = () => {
   const [selectedUser, setSelectedUser] = useState(null);
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
     refetch();
   }, [refetch]);
 
@@ -81,7 +85,6 @@ const ManageUsers = () => {
               View, edit, and manage all registered users
             </p>
           </div>
-          
         </div>
 
         {/* Table Container */}

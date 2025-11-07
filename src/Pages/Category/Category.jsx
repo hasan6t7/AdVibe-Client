@@ -27,6 +27,11 @@ const Category = () => {
       );
 
       setFilterProduct(filtered);
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     } else {
       setFilterProduct([]);
     }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 import {
   useDeleteOrderByIdMutation,
@@ -11,6 +11,13 @@ import Swal from "sweetalert2";
 const ManageOrder = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   const { data, isLoading, isError, refetch } = useGetAllOrdersQuery();
   const [deleteOrderById] = useDeleteOrderByIdMutation();

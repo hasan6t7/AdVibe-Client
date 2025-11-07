@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link, NavLink, Outlet, useNavigate } from "react-router";
 import { AiFillHome } from "react-icons/ai";
 import { FaMoneyCheckAlt, FaUsers, FaUserCircle } from "react-icons/fa";
@@ -18,6 +18,13 @@ const DashLayout = () => {
     dispatch(logout());
     navigate("/login");
   };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   const adminNavItems = [
     {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useGetOrderByEmailQuery } from "../../../../Redux/features/orders/orderApi";
 import { Link } from "react-router";
@@ -7,6 +7,12 @@ import Loader from "../../../../Components/Loader";
 const UserOrders = () => {
   const { user } = useSelector((state) => state.auth.user);
   const { data, isLoading } = useGetOrderByEmailQuery(user?.email);
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
   if (isLoading) return <Loader />;
   const orders = data?.data || [];
 
@@ -23,7 +29,6 @@ const UserOrders = () => {
               Track all your purchases at a glance
             </p>
           </div>
-         
         </div>
 
         {/* Table Container */}

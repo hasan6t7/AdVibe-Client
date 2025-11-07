@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useGetOrderByEmailQuery } from "../../../../Redux/features/orders/orderApi";
 import { FaMoneyBillWave, FaCalendarAlt, FaInfoCircle } from "react-icons/fa";
@@ -11,14 +11,19 @@ const UserPayments = () => {
     user?.email
   );
   const orders = data?.data || [];
-  console.log(orders)
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   if (isLoading) return <Loader />;
 
-  if (isError){
-    console.log(error)
+  if (isError) {
+    console.log(error);
   }
-    
 
   const totalPayment = orders.reduce((acc, order) => acc + order.amount, 0);
 

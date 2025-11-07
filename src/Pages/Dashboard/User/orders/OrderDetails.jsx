@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { useGetOrderByIdQuery } from "../../../../Redux/features/orders/orderApi";
 import TimelineStep from "../../../../Components/TimelineStep";
@@ -46,6 +46,12 @@ const steps = [
 const OrderDetails = () => {
   const { orderId } = useParams();
   const { data, isLoading, isError, error } = useGetOrderByIdQuery(orderId);
+  useEffect(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, []);
   isError && <div>Can not fetch Order data. {error}</div>;
   isLoading && <Loader />;
   const order = data?.data || {};
@@ -55,7 +61,7 @@ const OrderDetails = () => {
   };
   const isCurrent = (status) => order.status === status;
   return (
-    <div className="p-6 min-h-[calc(100vh-428px)] ">
+    <div className="p-6 min-h-screen ">
       <h1 className="text-2xl font-semibold mb-4">Payment {order?.status}</h1>
       <p className="mb-4">
         <span className="font-semibold">Order Id :</span> {order?.orderId}
@@ -64,7 +70,7 @@ const OrderDetails = () => {
         <span className="font-semibold">Status: </span> {order?.status}
       </p>
 
-      <ol className="sm:grid sm:grid-cols-4 items-center relative">
+      <ol className="sm:grid sm:grid-cols-4 items-center relative mt-16">
         {steps.map((step, index) => (
           <TimelineStep
             key={index}

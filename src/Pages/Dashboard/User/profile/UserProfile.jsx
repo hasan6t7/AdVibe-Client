@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   FaEnvelope,
@@ -20,9 +20,16 @@ const UserProfile = () => {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth.user || {});
   const navigate = useNavigate();
-console.log(user)
+  console.log(user);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editProfile, { isError, isLoading, error }] = useEditProfileMutation();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   const {
     register,
@@ -53,7 +60,7 @@ console.log(user)
       });
       dispatch(setUser(response?.data));
       navigate("/login");
-      toast.info("Please Login Again!")
+      toast.info("Please Login Again!");
       reset();
       setIsModalOpen(false);
     } catch (error) {
@@ -64,7 +71,7 @@ console.log(user)
         showConfirmButton: false,
         timer: 1500,
       });
-      
+
       console.log(error);
     }
   };

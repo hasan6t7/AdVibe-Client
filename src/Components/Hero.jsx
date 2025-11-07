@@ -3,7 +3,7 @@ import { Link } from "react-router";
 
 const Hero = () => {
   return (
-    <section className="grid bg-[#F4E5EC] grid-cols-1 gap-5 md:grid-cols-2 items-center justify-center p-6">
+    <section className="grid  bg-[#F4E5EC] grid-cols-1 gap-5 md:grid-cols-2 items-center justify-center p-6">
       <div className="">
         {/* <h4 className="text-[#ed3849] mb-4">
           UP TO 20% DISCOUNT ON

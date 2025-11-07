@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 import {
   useDeleteProductMutation,
@@ -10,6 +10,13 @@ import Swal from "sweetalert2";
 const ManageProduct = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const productPerPage = 10;
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   const { data, isLoading, isError, error, refetch } = useGetAllProductsQuery({
     page: currentPage,
@@ -34,7 +41,7 @@ const ManageProduct = () => {
       }).then(async (result) => {
         if (result.isConfirmed) {
           try {
-           await deleteProduct(id).unwrap();
+            await deleteProduct(id).unwrap();
 
             Swal.fire({
               position: "center",
@@ -52,8 +59,7 @@ const ManageProduct = () => {
           }
         }
       });
-      
-      
+
       refetch();
     } catch (error) {
       console.log(" Failed to delete Product", error);

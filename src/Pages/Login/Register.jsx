@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { useRegisterUserMutation } from "../../Redux/features/auth/authApi";
@@ -13,6 +13,13 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   const onSubmit = async (data) => {
     try {

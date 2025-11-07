@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextInput from "./TextInput";
 import UploadImage from "./UploadImage";
 import { useSelector } from "react-redux";
@@ -11,6 +11,12 @@ const AddProduct = () => {
   const data = useSelector((state) => state.auth.user);
   const user = data?.user;
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   const [addProduct, { isLoading, isError }] = useAddProductMutation();
 

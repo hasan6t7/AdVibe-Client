@@ -30,6 +30,10 @@ const UpdateProduct = () => {
 
   // Set default values once productData is loaded
   useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
     if (productData) {
       setProduct({
         name: productData.name || "",

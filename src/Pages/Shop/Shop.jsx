@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useGetAllProductsQuery } from "../../Redux/features/Products/productsApi";
 import ProductCard from "./ProductCard";
 import ShopFiltering from "./ShopFiltering";
@@ -6,8 +6,18 @@ import Loader from "../../Components/Loader";
 
 const Shop = () => {
   const filter = {
-    categories: ["all", "accessories", "dress", "jewellery", "cosmetics"],
-    color: ["all", "black", "red", "gold", "blue", "yellow", "white", "green", "pink"],
+    categories: ["all", "roses", "tulips", "lilies", "orchids", "sunflowers"],
+    color: [
+      "all",
+      "black",
+      "red",
+      "gold",
+      "blue",
+      "yellow",
+      "white",
+      "green",
+      "pink",
+    ],
     priceRange: [
       { label: "Under $50", min: 0, max: 50 },
       { label: "$50 - $100", min: 50, max: 100 },
@@ -15,6 +25,13 @@ const Shop = () => {
       { label: "$200 and Above", min: 200, max: Infinity },
     ],
   };
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   const [filterstate, setFilterstate] = useState({
     category: "all",

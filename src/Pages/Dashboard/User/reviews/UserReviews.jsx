@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useGetReviewByUserIdQuery } from "../../../../Redux/features/Reviews/reviewsApi";
 import { Link } from "react-router";
@@ -10,6 +10,13 @@ const UserReviews = () => {
     user?._id
   );
   const reviews = data?.data || [];
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   if (isLoading) return <Loader />;
 

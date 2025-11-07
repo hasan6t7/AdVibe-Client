@@ -44,7 +44,7 @@ const Deal = () => {
   }, []);
 
   return (
-    <section className="p-6 my-20 flex flex-col md:flex-row items-center gap-10 bg-[#F4E5EC] rounded-2xl">
+    <section className="p-6 mx-6 my-20 flex flex-col md:flex-row items-center gap-10 bg-[#F4E5EC] rounded-2xl">
       <div className="flex-1">
         <img
           className="w-[80%] md:w-1/2 mx-auto"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { useLoginUserMutation } from "../../Redux/features/auth/authApi";
@@ -17,6 +17,13 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
   const onSubmit = async (data) => {
     try {
