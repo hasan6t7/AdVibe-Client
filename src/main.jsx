@@ -7,9 +7,11 @@ import router from "./Router/router.jsx";
 import "remixicon/fonts/remixicon.css";
 import { Provider } from "react-redux";
 import { store } from "./Redux/store.js";
+import { ToastContainer } from "react-toastify";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    <ToastContainer />
     <Provider store={store}>
       <RouterProvider router={router}></RouterProvider>
     </Provider>

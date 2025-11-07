@@ -13,6 +13,8 @@ import { useEditProfileMutation } from "../../../../Redux/features/auth/authApi"
 import { setUser } from "../../../../Redux/features/auth/authSlice";
 import { useNavigate } from "react-router";
 import Loader from "../../../../Components/Loader";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
@@ -43,12 +45,27 @@ console.log(user)
         id: user?._id,
         profileData: data,
       }).unwrap();
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `Profile Updated Successfully!`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
       dispatch(setUser(response?.data));
       navigate("/login");
+      toast.info("Please Login Again!")
       reset();
       setIsModalOpen(false);
     } catch (error) {
-      alert("Failed to Update Profile");
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: `Failed to Update Profile`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      
       console.log(error);
     }
   };
@@ -113,7 +130,7 @@ console.log(user)
         <div className="mt-8 md:flex md:justify-center">
           <button
             onClick={() => setIsModalOpen(true)}
-            className="flex items-center gap-2 px-6 py-2 text-white rounded-lg bg-gradient-to-r from-[#d23141] to-[#ed3849] hover:from-[#ed3849] hover:to-[#d23141] transition shadow-md font-medium"
+            className="flex cursor-pointer items-center gap-2 px-6 py-2 text-white rounded-lg bg-gradient-to-r from-[#d23141] to-[#ed3849] hover:from-[#ed3849] hover:to-[#d23141] transition shadow-md font-medium"
           >
             <FaEdit /> Edit Profile
           </button>
@@ -125,7 +142,7 @@ console.log(user)
             {/* Close Button */}
             <button
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-3 right-3 text-gray-600 hover:text-[#d23141]"
+              className="absolute cursor-pointer top-3 right-3  text-gray-600 hover:text-[#d23141]"
             >
               <FaTimes size={18} />
             </button>
@@ -198,7 +215,7 @@ console.log(user)
               <div className="text-center">
                 <button
                   type="submit"
-                  className="px-6 py-2 bg-gradient-to-r from-[#d23141] to-[#ed3849] text-white rounded-lg shadow-md hover:from-[#ed3849] hover:to-[#d23141] transition-all"
+                  className="px-6 cursor-pointer py-2 bg-gradient-to-r from-[#d23141] to-[#ed3849] text-white rounded-lg shadow-md hover:from-[#ed3849] hover:to-[#d23141] transition-all"
                 >
                   Save Changes
                 </button>
