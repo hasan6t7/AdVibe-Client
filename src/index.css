@@ -5,18 +5,12 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-/* @theme {
+/* 
   --color-primary: #ed3849;
-  --color-primary-dark: #d23141;
-  --color-primary-light: #f4e5ec;
-  --color-text-dark: #0f172a;
-  --color-text-light: #64748b;
-  --color-extra-light: #f8fafc;
+  --color-primary-dark: #d23141; */
 
-  --max-w-screen-2xl: 1400px;
-  --max-w-custom-1200: 1200px;
-  --max-w-custom-900: 900px;
-} */
+
+
 
 .poppins {
   font-family: "Poppins", sans-serif;
