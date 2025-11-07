@@ -1,9 +1,7 @@
-
-
 import React, { useState } from "react";
-
 import { useUpdateUserRoleMutation } from "../../../../Redux/features/auth/authApi";
-import { AnimatePresence , motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import Swal from "sweetalert2";
 
 const UpdateUserModal = ({ user, onClose, onRoleUpdate }) => {
   const [role, setRole] = useState(user?.role);
@@ -12,7 +10,13 @@ const UpdateUserModal = ({ user, onClose, onRoleUpdate }) => {
   const handleUpdateRole = async () => {
     try {
       await updateUserRole({ userId: user?._id, role }).unwrap();
-      alert(" Role Updated Successfully!");
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Role Updated Successfully!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
       onClose();
       onRoleUpdate();
     } catch (error) {
