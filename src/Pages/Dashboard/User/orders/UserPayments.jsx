@@ -5,21 +5,20 @@ import { FaMoneyBillWave, FaCalendarAlt, FaInfoCircle } from "react-icons/fa";
 import Loader from "../../../../Components/Loader";
 
 const UserPayments = () => {
-  const { user } = useSelector((state) => state.auth.user);
-  const { data, isLoading, isError, error } = useGetOrderByEmailQuery(user?.email);
+  const userData = useSelector((state) => state.auth.user);
+  const user = userData?.user;
+  const { data, isLoading, isError, error } = useGetOrderByEmailQuery(
+    user?.email
+  );
   const orders = data?.data || [];
+  console.log(orders)
 
-  if (isLoading)
-    return (
-     <Loader />
-    );
+  if (isLoading) return <Loader />;
 
-  if (isError)
-    return (
-      <div className="text-red-600 text-center font-semibold">
-         Error Fetching Payment: {error?.message || "Something went wrong"}
-      </div>
-    );
+  if (isError){
+    console.log(error)
+  }
+    
 
   const totalPayment = orders.reduce((acc, order) => acc + order.amount, 0);
 
@@ -28,10 +27,11 @@ const UserPayments = () => {
       {/* Header */}
       <div className="mb-8 ">
         <h3 className="text-3xl font-bold text-[#d23141] tracking-wide">
-           Payment Overview
+          Payment Overview
         </h3>
         <p className="text-gray-600 mt-2">
-          Hi {user?.username || "User"}, here’s a summary of your recent payments.
+          Hi {user?.username || "User"}, here’s a summary of your recent
+          payments.
         </p>
       </div>
 
@@ -95,7 +95,9 @@ const UserPayments = () => {
               </li>
             ))
           ) : (
-            <p className="text-gray-500 text-center py-6">No payment records found </p>
+            <p className="text-gray-500 text-center py-6">
+              No payment records found{" "}
+            </p>
           )}
         </ul>
       </div>

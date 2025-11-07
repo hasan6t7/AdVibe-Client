@@ -32,7 +32,6 @@ console.log(user)
   } = useForm({
     defaultValues: {
       username: user?.username || "",
-      email: user?.email || "",
       bio: user?.bio || "",
       profession: user?.profession || "",
       profileImage: user?.profileImage || "",
@@ -164,19 +163,6 @@ console.log(user)
                   <p className="text-sm text-red-500 mt-1">
                     Username is required
                   </p>
-                )}
-              </div>
-
-              {/* Email */}
-              <div>
-                <label className="block text-gray-700 mb-1">Email</label>
-                <input
-                  type="email"
-                  {...register("email", { required: true })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#d23141]"
-                />
-                {errors.email && (
-                  <p className="text-sm text-red-500 mt-1">Email is required</p>
                 )}
               </div>
 
