@@ -81,12 +81,7 @@ const ManageUsers = () => {
               View, edit, and manage all registered users
             </p>
           </div>
-          <Link
-            to="/users"
-            className="bg-[#ed3849] hover:bg-[#d23141] text-white text-sm font-semibold px-5 py-2 rounded-md shadow-md transition-all duration-200 cursor-pointer"
-          >
-            See All
-          </Link>
+          
         </div>
 
         {/* Table Container */}

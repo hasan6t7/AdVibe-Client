@@ -5,6 +5,8 @@ import {
   useGetAllOrdersQuery,
 } from "../../../../Redux/features/orders/orderApi";
 import UpdateOrderModal from "./UpdateOrderModal";
+import Loader from "../../../../Components/Loader";
+import Swal from "sweetalert2";
 
 const ManageOrder = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
@@ -17,10 +19,37 @@ const ManageOrder = () => {
 
   // Delete Order
   const handleDeleteOrder = async (orderId) => {
-    if (!window.confirm("Are you sure you want to delete this order?")) return;
     try {
-      await deleteOrderById(orderId).unwrap();
-      alert(" Order deleted successfully!");
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            await deleteOrderById(orderId).unwrap();
+
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Order deleted successfully!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          } catch (error) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: `Something went wrong while deleting! ${error}`,
+            });
+          }
+        }
+      });
+
       refetch();
     } catch (error) {
       console.log("Failed to delete order:", error);
@@ -63,17 +92,12 @@ const ManageOrder = () => {
     }
   };
 
-  if (isLoading)
-    return (
-      <div className="flex justify-center items-center min-h-screen text-gray-600 text-lg">
-        Loading orders...
-      </div>
-    );
+  if (isLoading) return <Loader />;
 
   if (isError)
     return (
       <div className="text-center text-red-600 font-medium mt-10">
-         Failed to load orders.
+        Failed to load orders.
       </div>
     );
 
@@ -90,7 +114,6 @@ const ManageOrder = () => {
               View, update, and manage all customer orders
             </p>
           </div>
-          
         </div>
 
         {/* Table */}
@@ -145,12 +168,12 @@ const ManageOrder = () => {
 
                     {/* Action Buttons */}
                     <td className="px-2 py-3 text-sm text-gray-700 flex gap-2">
-                        <Link
-                          to={`/orders/${order._id}`}
-                          className="bg-gray-100 text-gray-700 hover:bg-gray-700 hover:text-white font-semibold px-2 py-1.5 rounded-md shadow-sm transition-all duration-200 cursor-pointer"
-                        >
-                          View
-                        </Link>
+                      <Link
+                        to={`/orders/${order._id}`}
+                        className="bg-gray-100 text-gray-700 hover:bg-gray-700 hover:text-white font-semibold px-2 py-1.5 rounded-md shadow-sm transition-all duration-200 cursor-pointer"
+                      >
+                        View
+                      </Link>
                       <button
                         onClick={() => handleEditOrder(order)}
                         className="bg-blue-100 text-blue-700 hover:bg-blue-600 hover:text-white font-semibold px-3 py-1 rounded-md shadow-sm transition-all duration-200 cursor-pointer"

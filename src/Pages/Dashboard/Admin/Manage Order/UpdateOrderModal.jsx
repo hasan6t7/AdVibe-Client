@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useUpdateOrderStatusMutation } from "../../../../Redux/features/orders/orderApi";
+import Swal from "sweetalert2";
 
 const UpdateOrderModal = ({ order, onClose, onOrderUpdate }) => {
   const [status, setStatus] = useState(order?.status || "Pending");
@@ -9,6 +10,7 @@ const UpdateOrderModal = ({ order, onClose, onOrderUpdate }) => {
   const handleUpdateOrder = async () => {
     try {
       await updateOrderStatus({ id: order?._id, status }).unwrap();
+      
       alert(" Order status updated successfully!");
       onClose();
       onOrderUpdate();
@@ -113,14 +115,14 @@ const UpdateOrderModal = ({ order, onClose, onOrderUpdate }) => {
           <div className="flex justify-end gap-3">
             <button
               onClick={onClose}
-              className="px-5 py-2 rounded-lg text-gray-700 border border-gray-300 hover:bg-gray-100 transition-colors"
+              className="px-5 py-2 cursor-pointer rounded-lg text-gray-700 border border-gray-300 hover:bg-gray-100 transition-colors"
             >
               Cancel
             </button>
             <button
               onClick={handleUpdateOrder}
               disabled={isLoading}
-              className={`px-6 py-2 rounded-lg text-white font-medium transition-all shadow-md ${
+              className={`px-6 cursor-pointer py-2 rounded-lg text-white font-medium transition-all shadow-md ${
                 isLoading
                   ? "bg-[#ed3849]/70 cursor-not-allowed"
                   : "bg-[#ed3849] hover:bg-[#d23141]"

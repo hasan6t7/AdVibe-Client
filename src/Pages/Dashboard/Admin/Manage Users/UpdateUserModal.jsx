@@ -44,7 +44,7 @@ const UpdateUserModal = ({ user, onClose, onRoleUpdate }) => {
           {/* Close Button */}
           <button
             onClick={onClose}
-            className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 transition-colors"
+            className="absolute top-3 cursor-pointer right-3 text-gray-500 hover:text-[#d23141] transition-colors"
           >
             ✕
           </button>
@@ -91,14 +91,14 @@ const UpdateUserModal = ({ user, onClose, onRoleUpdate }) => {
           <div className="flex justify-end gap-3">
             <button
               onClick={onClose}
-              className="px-5 py-2 rounded-lg text-gray-700 border border-gray-300 hover:bg-gray-100 transition-colors"
+              className="px-5 py-2 cursor-pointer rounded-lg text-gray-700 border border-gray-300 hover:bg-gray-100 transition-colors"
             >
               Cancel
             </button>
             <button
               onClick={handleUpdateRole}
               disabled={isLoading}
-              className={`px-6 py-2 rounded-lg text-white font-medium transition-all shadow-md ${
+              className={`px-6 py-2 cursor-pointer rounded-lg text-white font-medium transition-all shadow-md ${
                 isLoading
                   ? "bg-[#ed3849]/70 cursor-not-allowed"
                   : "bg-[#ed3849] hover:bg-[#d23141]"
