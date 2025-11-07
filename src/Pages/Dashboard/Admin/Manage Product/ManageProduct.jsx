@@ -4,6 +4,7 @@ import {
   useDeleteProductMutation,
   useGetAllProductsQuery,
 } from "../../../../Redux/features/Products/productsApi";
+import Loader from "../../../../Components/Loader";
 
 const ManageProduct = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -20,7 +21,7 @@ const ManageProduct = () => {
   const totalPages = data?.data?.totalPage || 0;
 
   const handleDelete = async (id) => {
-    try { 
+    try {
       await deleteProduct(id).unwrap();
       alert(" Product deleted successfully!");
       refetch();
@@ -39,12 +40,7 @@ const ManageProduct = () => {
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  if (isLoading)
-    return (
-      <div className="flex justify-center items-center min-h-screen text-gray-600 text-lg">
-        Loading products...
-      </div>
-    );
+  if (isLoading) return <Loader />;
 
   if (isError)
     return (

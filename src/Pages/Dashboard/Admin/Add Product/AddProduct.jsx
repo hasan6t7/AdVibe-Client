@@ -4,10 +4,13 @@ import UploadImage from "./UploadImage";
 import { useSelector } from "react-redux";
 import { useAddProductMutation } from "../../../../Redux/features/Products/productsApi";
 import Loader from "../../../../Components/Loader";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 
 const AddProduct = () => {
   const data = useSelector((state) => state.auth.user);
   const user = data?.user;
+  const navigate = useNavigate();
 
   const [addProduct, { isLoading, isError }] = useAddProductMutation();
 
@@ -43,7 +46,16 @@ const AddProduct = () => {
     }
     try {
       await addProduct({ ...product, image, author: user?._id }).unwrap();
-      alert("Product Added Successfully");
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `Product Added Successfully`,
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      navigate("/dashboard/manage-product");
+
       setProduct({
         name: "",
         category: "",
@@ -67,9 +79,9 @@ const AddProduct = () => {
         {/* Product Name */}
         <TextInput
           type="text"
-          label="Product Name"
+          label="Flower Name"
           name="name"
-          placeholder="Gold Necklace"
+          placeholder="Flower Name"
           value={product.name}
           onChange={handleChange}
         />
@@ -86,10 +98,11 @@ const AddProduct = () => {
             className="border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-[#ed3849]  transition duration-150"
           >
             <option value="">Select Category</option>
-            <option value="accessories">Accessories</option>
-            <option value="jewellery">Jewelry</option>
-            <option value="cosmetics">Cosmetics</option>
-            <option value="dress">Dress Collection</option>
+            <option value="roses">Roses</option>
+            <option value="tulips">Tulips</option>
+            <option value="lilies">Lilies</option>
+            <option value="orchids">Orchids</option>
+            <option value="sunflowers">Sunflowers</option>
           </select>
         </div>
         {/* image  */}
@@ -140,16 +153,20 @@ const AddProduct = () => {
           >
             <option value="">Select Color</option>
             <option value="Gold">Gold</option>
-            <option value="Silver">Silver</option>
-            <option value="Black">Black</option>
-            <option value="White">White</option>
+            <option value="red">Red</option>
+            <option value="black">Black</option>
+            <option value="white">White</option>
+            <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
+            <option value="pink">Pink</option>
+            <option value="blue">Blue</option>
           </select>
         </div>
 
         {/* Submit Button */}
         <button
           type="submit"
-          className="w-full py-2 bg-[#ed3849] text-white font-semibold rounded-lg hover:bg-[#d23141] transition duration-200"
+          className="w-full py-2 bg-[#ed3849] text-white font-semibold rounded-lg hover:bg-[#d23141] transition duration-200 cursor-pointer"
         >
           Add Product
         </button>

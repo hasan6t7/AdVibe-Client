@@ -7,7 +7,7 @@ import Loader from "../../Components/Loader";
 const Shop = () => {
   const filter = {
     categories: ["all", "accessories", "dress", "jewellery", "cosmetics"],
-    color: ["all", "black", "red", "gold", "blue", "silver", "beige", "green"],
+    color: ["all", "black", "red", "gold", "blue", "yellow", "white", "green", "pink"],
     priceRange: [
       { label: "Under $50", min: 0, max: 50 },
       { label: "$50 - $100", min: 50, max: 100 },

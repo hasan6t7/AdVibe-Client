@@ -5,6 +5,8 @@ import {
 } from "../../../../Redux/features/auth/authApi";
 import { Link } from "react-router";
 import UpdateUserModal from "./UpdateUserModal";
+import Loader from "../../../../Components/Loader";
+import Swal from "sweetalert2";
 
 const ManageUsers = () => {
   const { data, isLoading, refetch } = useGetAllUsersQuery();
@@ -18,22 +20,45 @@ const ManageUsers = () => {
   }, [refetch]);
 
   if (isLoading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen text-gray-600 text-lg">
-        Loading users...
-      </div>
-    );
+    return <Loader />;
   }
 
   const handleDeleteUser = async (id) => {
     try {
-      const response = await deleteUser(id).unwrap();
-      console.log(response);
-      alert("Deleted");
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+            await deleteUser(id).unwrap();
+
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "User deleted successfully!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          } catch (error) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: `Something went wrong while deleting! ${error}`,
+            });
+          }
+        }
+      });
     } catch (error) {
       console.log("Delete user : ", error);
     }
   };
+
   const handleEditRole = async (user) => {
     setSelectedUser(user);
     setIsModalOpen(true);

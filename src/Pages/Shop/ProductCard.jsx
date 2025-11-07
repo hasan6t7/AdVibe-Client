@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../Redux/features/cart/cartSlice";
 
 const ProductCard = ({ products }) => {
-  console.log(products)
+  
   const dispatch = useDispatch();
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));    
