@@ -10,13 +10,25 @@ const UpdateOrderModal = ({ order, onClose, onOrderUpdate }) => {
   const handleUpdateOrder = async () => {
     try {
       await updateOrderStatus({ id: order?._id, status }).unwrap();
-      
-      alert(" Order status updated successfully!");
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Order status updated successfully!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
       onClose();
       onOrderUpdate();
     } catch (error) {
       console.log("Failed to update order:", error);
-      alert(" Failed to update order!");
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Failed to update order!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
 
