@@ -5,6 +5,7 @@ import {
   useGetAllProductsQuery,
 } from "../../../../Redux/features/Products/productsApi";
 import Loader from "../../../../Components/Loader";
+import Swal from "sweetalert2";
 
 const ManageProduct = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -22,8 +23,37 @@ const ManageProduct = () => {
 
   const handleDelete = async (id) => {
     try {
-      await deleteProduct(id).unwrap();
-      alert(" Product deleted successfully!");
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          try {
+           await deleteProduct(id).unwrap();
+
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Product deleted successfully!",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          } catch (error) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: `Something went wrong while deleting! ${error}`,
+            });
+          }
+        }
+      });
+      
+      
       refetch();
     } catch (error) {
       console.log(" Failed to delete Product", error);
