@@ -20,6 +20,7 @@ import ManageOrder from "../Pages/Dashboard/Admin/Manage Order/ManageOrder";
 import AddProduct from "../Pages/Dashboard/Admin/Add Product/addProduct";
 import ManageProduct from "../Pages/Dashboard/Admin/Manage Product/ManageProduct";
 import UpdateProduct from "../Pages/Dashboard/Admin/Update Product/UpdateProduct";
+import AboutUs from "../Pages/About us/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: "shop", element: <Shop /> },
+      { path: "about", element: <AboutUs /> },
       { path: "shop/:id", element: <SingleProducts /> },
       { path: "category/:categoryName", element: <Category /> },
       { path: "success", element: <PaymentSuccess /> },
@@ -53,7 +55,7 @@ const router = createBrowserRouter([
       // admin
       { path: "add-product", element: <AddProduct /> },
       { path: "manage-product", element: <ManageProduct /> },
-      { path: "update-product/:id", element: <UpdateProduct />},
+      { path: "update-product/:id", element: <UpdateProduct /> },
       { path: "manage-order", element: <ManageOrder /> },
       { path: "manage-users", element: <ManageUsers /> },
     ],

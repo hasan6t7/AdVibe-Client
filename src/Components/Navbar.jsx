@@ -98,7 +98,7 @@ const Navbar = ({ onCartToggle }) => {
         {/* Brand */}
         <Link
           to="/"
-          className="text-3xl font-bold playfair text-gray-900 hover:text-[#d23141] transition-all"
+          className="text-3xl font-bold playfair   transition-all"
         >
           Ad<span className="text-[#d23141]">V</span>ibe
         </Link>
@@ -127,6 +127,18 @@ const Navbar = ({ onCartToggle }) => {
               }
             >
               Shop
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#d23141] border-b-2 border-[#d23141] pb-1"
+                  : "hover:text-[#d23141] transition-all"
+              }
+            >
+              About
             </NavLink>
           </li>
         </ul>
@@ -243,6 +255,15 @@ const Navbar = ({ onCartToggle }) => {
               }
             >
               Shop
+            </NavLink>
+            <NavLink
+              to="/about"
+              onClick={() => setMobileMenu(false)}
+              className={({ isActive }) =>
+                isActive ? "text-[#d23141]" : "hover:text-[#d23141]"
+              }
+            >
+              About
             </NavLink>
           </ul>
         </div>
