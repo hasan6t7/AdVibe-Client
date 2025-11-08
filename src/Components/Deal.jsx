@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Deal = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -9,7 +11,12 @@ const Deal = () => {
   });
 
   useEffect(() => {
-    // 📅 set the target date (this month's last day)
+    AOS.init({
+      duration: 600,
+      offset: 250,
+      easing: "ease-in-out",
+    });
+
     const now = new Date();
     const targetDate = new Date(
       now.getFullYear(),
@@ -44,7 +51,10 @@ const Deal = () => {
   }, []);
 
   return (
-    <section className="p-6 mx-6 my-20 flex flex-col md:flex-row items-center gap-10 bg-[#F4E5EC] rounded-2xl">
+    <section
+      data-aos="fade-up"
+      className="p-6 mx-6 my-20 flex flex-col md:flex-row items-center gap-10 bg-[#F4E5EC] rounded-2xl"
+    >
       <div className="flex-1">
         <img
           className="w-[80%] md:w-1/2 mx-auto"
@@ -61,7 +71,9 @@ const Deal = () => {
           Deals Of This Month
         </h4>
         <p className="text-sm text-gray-700 text-center lg:text-left">
-          Experience the timeless beauty of orchids with our Deal of the Month. Each orchid is carefully nurtured to ensure long-lasting blooms — a sophisticated addition to any room, now at an exclusive monthly offer.
+          Experience the timeless beauty of orchids with our Deal of the Month.
+          Each orchid is carefully nurtured to ensure long-lasting blooms — a
+          sophisticated addition to any room, now at an exclusive monthly offer.
         </p>
 
         <div className="flex items-center gap-6 mt-10 flex-wrap justify-center md:justify-start">

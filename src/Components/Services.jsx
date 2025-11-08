@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import { FaTruck, FaMoneyBillWave, FaHeadset } from "react-icons/fa";
 
 const Services = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 600,
+      offset: 250,
+      easing: "ease-in-out",
+    });
+  }, []);
   const servicesData = [
     {
       icon: <FaTruck size={36} className="text-[#ed3849]" />,
@@ -24,7 +33,7 @@ const Services = () => {
   ];
 
   return (
-    <section className="p-6 py-16">
+    <section data-aos="fade-up" className="p-6 py-16">
       <h1 className="text-5xl font-bold text-center playfair mb-16 animate-fadeIn">
         Our Services
       </h1>
@@ -32,6 +41,8 @@ const Services = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
         {servicesData.map((service, idx) => (
           <div
+            data-aos="zoom-in"
+            data-aos-delay={idx * 100}
             key={idx}
             className="text-center p-8 bg-gradient-to-b from-[#fff0f4] to-[#fce7ed] rounded-3xl shadow-lg hover:scale-105 transform transition-all duration-300 animate-pop"
           >

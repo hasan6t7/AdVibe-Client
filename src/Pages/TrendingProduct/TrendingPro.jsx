@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import "aos/dist/aos.css";
+import AOS from "aos";
 
 import ProductCard from "../Shop/ProductCard";
 import { useGetAllProductsQuery } from "../../Redux/features/Products/productsApi";
@@ -17,10 +19,17 @@ const TrendingPro = () => {
     page: "",
     limit: "",
   });
+  useEffect(() => {
+    AOS.init({
+      duration: 800,
+      once: true,
+      offset: 250,
+      easing: "ease-in-out",
+    });
+  }, []);
 
   const products = data?.data?.products || [];
-  if (isLoading)
-    return <Loader />;
+  if (isLoading) return <Loader />;
   if (isError)
     return (
       <p className="text-center mt-10 text-red-500">
@@ -29,12 +38,15 @@ const TrendingPro = () => {
     );
   return (
     <div className="p-6">
-      <h1 className="text-center text-5xl playfair">Trending Products</h1>
-      <p className="lg:w-2/3 mx-auto text-center mt-3 text-sm text-gray-700">
-        Discover the latest trends and express your unique style with our
-        Women's Fashion website. Explore a curated collection of clothing,
-        accessories, and footwear that caters to every taste and occasion.
-      </p>
+      <div data-aos="fade-up">
+        <h1 className="text-center text-5xl playfair">Trending Products</h1>
+        <p className="lg:w-2/3 mx-auto text-center mt-3 text-sm text-gray-700">
+          Discover the latest trends and express your unique style with our
+          Women's Fashion website. Explore a curated collection of clothing,
+          accessories, and footwear that caters to every taste and occasion.
+        </p>
+      </div>
+
       <div className="mt-16">
         <ProductCard products={products.slice(0, visibleProduct)}></ProductCard>
       </div>

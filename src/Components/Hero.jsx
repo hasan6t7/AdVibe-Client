@@ -25,7 +25,8 @@ const Hero = () => {
           UP TO 20% DISCOUNT ON
         </h4> */}
         <h1 className="text-5xl lg:text-7xl font-bold playfair">
-          Let's make beautiful flowers a part of your life
+          Let's make beautiful <span className="text-[#ed3849]">flowers</span> a
+          part of your life
         </h1>
         <p className="text-sm text-gray-700 mt-3">
           Every flower tells a story — of care, color, and connection. Let’s

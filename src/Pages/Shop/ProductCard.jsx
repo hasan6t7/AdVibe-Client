@@ -5,10 +5,9 @@ import { useDispatch } from "react-redux";
 import { addToCart } from "../../Redux/features/cart/cartSlice";
 
 const ProductCard = ({ products }) => {
-  
   const dispatch = useDispatch();
   const handleAddToCart = (product) => {
-    dispatch(addToCart(product));    
+    dispatch(addToCart(product));
   };
   return (
     <div>
@@ -16,6 +15,8 @@ const ProductCard = ({ products }) => {
         {products.length > 0 ? (
           products.map((product, ind) => (
             <div
+              data-aos="zoom-in"
+              data-aos-delay={ 200}
               key={ind}
               className="relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 group border border-gray-100 hover:-translate-y-2"
             >

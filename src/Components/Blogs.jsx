@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Blogs = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 600,
+      offset: 250,
+      easing: "ease-in-out",
+    });
+  }, []);
   const blogPosts = [
     {
       img: "https://i.ibb.co.com/8nLX9N2h/blooming.jpg",
@@ -29,16 +38,19 @@ const Blogs = () => {
   ];
 
   return (
-    <section className="p-6 my-20">
+    <section data-aos="fade-up" className="p-6 my-20">
       <h2 className="text-center text-5xl playfair">Latest From Our Blog</h2>
       <p className="lg:w-2/3 mx-auto text-center mt-3 text-sm text-gray-700">
-        Discover tips, tricks, and inspiration for your home and garden with our flower-focused blog.
+        Discover tips, tricks, and inspiration for your home and garden with our
+        flower-focused blog.
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-10">
         {blogPosts.map((blog, idx) => (
           <div
             key={idx}
+            data-aos="zoom-in"
+            data-aos-delay={idx * 100}
             className="rounded-xl pb-6 shadow-lg cursor-pointer hover:scale-105 transition-all duration-200"
           >
             <img
