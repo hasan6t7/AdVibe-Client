@@ -39,6 +39,7 @@ const ManageOrder = () => {
         if (result.isConfirmed) {
           try {
             await deleteOrderById(orderId).unwrap();
+            refetch();
 
             Swal.fire({
               position: "center",
@@ -57,7 +58,7 @@ const ManageOrder = () => {
         }
       });
 
-      refetch();
+      
     } catch (error) {
       console.log("Failed to delete order:", error);
       alert(" Failed to delete order");
@@ -152,6 +153,7 @@ const ManageOrder = () => {
                       {index + 1}
                     </td>
                     <td className="px-2 py-3 text-sm text-gray-700 font-mono">
+                      
                       {order.orderId || order._id}
                     </td>
                     <td className="px-2 py-3 text-sm text-gray-700">

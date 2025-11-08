@@ -141,6 +141,18 @@ const Navbar = ({ onCartToggle }) => {
               About
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#d23141] border-b-2 border-[#d23141] pb-1"
+                  : "hover:text-[#d23141] transition-all"
+              }
+            >
+              Contact
+            </NavLink>
+          </li>
         </ul>
 
         {/* Icons */}
@@ -264,6 +276,15 @@ const Navbar = ({ onCartToggle }) => {
               }
             >
               About
+            </NavLink>
+            <NavLink
+              to="/contact"
+              onClick={() => setMobileMenu(false)}
+              className={({ isActive }) =>
+                isActive ? "text-[#d23141]" : "hover:text-[#d23141]"
+              }
+            >
+              Contact
             </NavLink>
           </ul>
         </div>

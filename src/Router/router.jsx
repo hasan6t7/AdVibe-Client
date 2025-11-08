@@ -21,6 +21,7 @@ import AddProduct from "../Pages/Dashboard/Admin/Add Product/addProduct";
 import ManageProduct from "../Pages/Dashboard/Admin/Manage Product/ManageProduct";
 import UpdateProduct from "../Pages/Dashboard/Admin/Update Product/UpdateProduct";
 import AboutUs from "../Pages/About us/AboutUs";
+import Contact from "../Pages/Contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,7 @@ const router = createBrowserRouter([
       { index: true, element: <Home /> },
       { path: "shop", element: <Shop /> },
       { path: "about", element: <AboutUs /> },
+      { path: "contact", element: <Contact /> },
       { path: "shop/:id", element: <SingleProducts /> },
       { path: "category/:categoryName", element: <Category /> },
       { path: "success", element: <PaymentSuccess /> },
