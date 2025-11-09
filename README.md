@@ -39,19 +39,29 @@ It features a clean and responsive UI, smooth scroll animations, and tools for p
 ## 🛠️ Tech Stack  
 
 <p align="left">
-  <img src="https://skillicons.dev/icons?i=react,tailwind,firebase,redux,git" alt="Tech Stack" />
+  <img src="https://skillicons.dev/icons?i=react,tailwind,js,redux,nodejs,express,mongodb,firebase,git,postman" alt="Tech Stack" />
 </p>
 
-- **Frontend:** React, Tailwind CSS  
-- **Routing:** React Router DOM  
+- **Frontend:** React, Tailwind CSS , Framer Motion  , AOS , Sweetalert2
+- **Routing:** React Router  
 - **State Management:** Redux Toolkit  
-- **Backend / Hosting:** Firebase (Authentication & Hosting)  
+- **Backend:** Node Js , Express Js , JWT , Mongoose
+- **Database:** MongoDB
 
+
+---
+email- admin@wadvibe.com
+password- 123456
 ---
 
 ## ⚙️ Installation & Setup  
 
 ### 1️⃣ Clone this repository  
 ```bash
-git clone https://github.com/<your-username>/AdVibe.git
+git clone https://github.com/hasan6t7/AdVibe-Client
 cd AdVibe
+npm i
+npm run dev
+
+
+VITE_STRIPE_PUBLISHABLE_KEY= "pk_test_51Rht9NFdDUI75SFueckq2pwIpBHcN2E0voslFTW7me7lDfJ4lBZ0kgxN2YpFEUqnnzX40Ea3JzVmSv6vbw2PzZxC00nOm5g2il"
