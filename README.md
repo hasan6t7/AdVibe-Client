@@ -50,7 +50,7 @@ It features a clean and responsive UI, smooth scroll animations, and tools for p
 
 
 ---
-email- admin@wadvibe.com
+email- admin@advibe.com
 password- 123456
 ---
 
