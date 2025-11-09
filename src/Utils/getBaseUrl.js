@@ -1,7 +1,7 @@
 export const getBaseUrl = ()=>{
-    return "http://localhost:5000/"
+    return "https://advibe-ten.vercel.app/"
 }
 
 
 
-// https://advibe-ten.vercel.app/
+//  http://localhost:5000/
