@@ -1,16 +1,57 @@
-# React + Vite
+# 🌹 AdVibe — Flower E-Commerce Platform  
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<img src="https://github.com/hasan6t7/AdVibe-Client/blob/main/advive.png"  />
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🧠 Overview  
+**AdVibe** is a modern **flower e-commerce platform** built for browsing and purchasing flowers online.  
+It features a clean and responsive UI, smooth scroll animations, and tools for product filtering, cart management, and user authentication.  
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 Live Demo  
+[🔗 Visit AdVibe](https://advive-e-com.web.app/)
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 📌 Key Features  
+
+### 🛒 Shopping & Cart  
+- Browse and search for flowers by category  
+- Add products to the cart and remove items  
+- View total price and product summary  
+
+### 🔐 User Authentication  
+- Login and Signup via Firebase Authentication  
+- Secure access to user accounts  
+
+### 💐 Product Management  
+- Dynamic product details with React Router  
+- Responsive design for desktop, tablet, and mobile  
+
+### 🌈 UX & Animations  
+- Smooth scroll-triggered animations (AOS)  
+- Interactive buttons and transitions for better UX  
+
+---
+
+## 🛠️ Tech Stack  
+
+<p align="left">
+  <img src="https://skillicons.dev/icons?i=react,tailwind,firebase,redux,git" alt="Tech Stack" />
+</p>
+
+- **Frontend:** React, Tailwind CSS  
+- **Routing:** React Router DOM  
+- **State Management:** Redux Toolkit  
+- **Backend / Hosting:** Firebase (Authentication & Hosting)  
+
+---
+
+## ⚙️ Installation & Setup  
+
+### 1️⃣ Clone this repository  
+```bash
+git clone https://github.com/<your-username>/AdVibe.git
+cd AdVibe
