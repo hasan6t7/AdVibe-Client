@@ -31,25 +31,25 @@ const Footer = () => {
               href="#"
               className="p-2 rounded-full bg-white shadow hover:bg-[#ed3849] hover:text-white transition-all"
             >
-              <FaFacebookF />
+              <FaFacebookF size={25} />
             </a>
             <a
               href="#"
               className="p-2 rounded-full bg-white shadow hover:bg-[#ed3849] hover:text-white transition-all"
             >
-              <FaInstagram />
+              <FaInstagram  size={25}/>
             </a>
             <a
               href="#"
               className="p-2 rounded-full bg-white shadow hover:bg-[#ed3849] hover:text-white transition-all"
             >
-              <FaTwitter />
+              <FaTwitter size={25} />
             </a>
             <a
               href="#"
               className="p-2 rounded-full bg-white shadow hover:bg-[#ed3849] hover:text-white transition-all"
             >
-              <FaLinkedinIn />
+              <FaLinkedinIn size={25} />
             </a>
           </div>
         </div>

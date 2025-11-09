@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router"; 
+import { useParams } from "react-router";
 import RatingStar from "../../../Components/RatingStar";
 import { useAddReviewMutation } from "../../../Redux/features/Reviews/reviewsApi";
 
 const ReviewCard = ({ reviews: initialReviews }) => {
   const { id: productId } = useParams();
   const { user } = useSelector((state) => state.auth);
-  
 
   const [reviews, setReviews] = useState(initialReviews || []);
   const [showModal, setShowModal] = useState(false);
@@ -19,9 +18,10 @@ const ReviewCard = ({ reviews: initialReviews }) => {
   const [addReview] = useAddReviewMutation();
 
   const userReview = user
-    ? reviews.find((r) => r.userId._id === user._id || r.userId === user._id)
+    ? reviews.find((r) => r.userId?._id === user?.user?._id )
     : null;
 
+ 
   useEffect(() => {
     if (userReview && editing) {
       setRating(userReview.rating || 0);
@@ -30,15 +30,11 @@ const ReviewCard = ({ reviews: initialReviews }) => {
   }, [userReview, editing]);
 
   const handleSubmit = async () => {
-    
     if (!user) return alert("Please login first!");
 
-   
     if (!rating || !comment.trim()) {
       return alert("Please provide rating and comment!");
     }
-
-  
     if (!productId) {
       return alert("Product ID missing!");
     }
@@ -49,12 +45,8 @@ const ReviewCard = ({ reviews: initialReviews }) => {
       userId: user.user._id,
       productId,
     };
-
-    console.log("Review Payload:", payload); 
-
     try {
-      const response = await addReview(payload).unwrap();
-      console.log("Review Response:", response);
+      await addReview(payload).unwrap();
 
       // Update reviews in state
       let updatedReviews = reviews.map((r) =>
@@ -80,6 +72,7 @@ const ReviewCard = ({ reviews: initialReviews }) => {
       setEditing(false);
       setRating(0);
       setComment("");
+      window.location.reload(true);
     } catch (error) {
       console.error("Failed to post review:", error);
       alert(error?.data?.message || "Failed to post review. Try again later.");
@@ -100,7 +93,10 @@ const ReviewCard = ({ reviews: initialReviews }) => {
               <div className="flex items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
                   <img
-                    src="https://i.ibb.co/y6Rpw8Y/user.png"
+                    src={
+                      review?.userId?.profileImage ||
+                      "https://i.ibb.co/y6Rpw8Y/user.png"
+                    }
                     alt="Reviewer"
                     className="h-14 w-14 rounded-full border"
                   />
@@ -115,13 +111,14 @@ const ReviewCard = ({ reviews: initialReviews }) => {
                   </div>
                 </div>
 
-                {user && review.userId._id === user._id && (
+                {user && review.userId._id === user?.user?._id && (
                   <button
+
                     onClick={() => {
                       setEditing(true);
                       setShowModal(true);
                     }}
-                    className="px-3 py-1 bg-[#ed3849] text-white rounded-md text-sm hover:bg-[#d23141] transition-all duration-200"
+                    className="px-3 py-1 bg-[#ed3849] cursor-pointer text-white rounded-md text-sm hover:bg-[#d23141] transition-all duration-200"
                   >
                     Edit
                   </button>

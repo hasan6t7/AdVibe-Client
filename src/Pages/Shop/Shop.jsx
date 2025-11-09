@@ -115,7 +115,7 @@ const Shop = () => {
               <button
                 disabled={currentPage === 1}
                 onClick={() => handlePageChange(currentPage - 1)}
-                className="join-item btn btn-square"
+                className="join-item btn btn-square cursor-pointer"
               >
                 Prev
               </button>
@@ -135,7 +135,7 @@ const Shop = () => {
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="join-item btn btn-square"
+                className="join-item btn cursor-pointer btn-square"
               >
                 Next
               </button>
